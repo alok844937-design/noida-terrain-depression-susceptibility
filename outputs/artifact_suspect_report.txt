@@ -1,0 +1,51 @@
+NOIDA V3 — SPATIAL DEM-ARTIFACT-SUSPECT DIAGNOSTICS
+================================================================
+Primary population : DEEP terrain-depression candidates (tier 4, >3 m)
+                     — the most extreme tail, interrogated first.
+Reports artifact-SUSPECT diagnostic evidence only. Does NOT assert artifacts,
+does NOT modify the FROZEN V2.1.1 tier raster, does NOT use flow accumulation
+(deferred to V4), and performs NO removal. Grid alignment (dimensions +
+transform) between DEM and tier raster is validated before analysis.
+
+Analysis CRS            : EPSG:32644
+Cell area               : 845 m^2 (1 cell)
+Deep (>3 m) cells       : 10,796
+Connected components    : 1,464
+
+PRIMARY DIAGNOSTIC 1 — connected-component size
+  frozen threshold      : tiny/isolated <= 2 cells
+  tiny/isolated cells   : 1,091
+
+PRIMARY DIAGNOSTIC 2 — neighbourhood-spike
+  frozen window         : 3x3 (immediate 8 neighbours)
+  heuristic threshold   : >= 3.0 m below local median
+                          (heuristic diagnostic threshold; not itself
+                           evidence of an artifact)
+  note                  : local median is computed over the full 3x3
+                          neighbourhood (centre included); it is used only
+                          as a robust local-context diagnostic, not as a
+                          terrain-truth reference
+  spike-suspect cells   : 404
+  edge cells excluded   : 0 (full 3x3 neighbourhood unavailable;
+                          not independently interpreted as spike evidence)
+
+COMBINED (diagnostic evidence)
+  artifact-suspect      : 1,371 (12.7% of deep)
+  unflagged deep        : 9,425 (87.3% of deep)
+  (both diagnostics)    : 124 cells triggered BOTH tiny-patch and spike
+
+INTERPRETATION
+  'Artifact-suspect' = tiny/isolated patch and/or sharp local spike. This
+  RAISES suspicion of a DEM artifact but does NOT prove one; a genuine small
+  topographic feature can produce the same signature. Thresholds are
+  heuristic. Independent confirmation is deferred to V4 (flow-accumulation
+  cross-check). V3 answers only: which deep candidates deserve further
+  scrutiny? It does not remove or reclassify anything.
+
+COMPONENT-SIZE DISTRIBUTION (deep patches)
+  components <=   1 cells : 569
+  components <=   2 cells : 830
+  components <=   5 cells : 1,120
+  components <=  10 cells : 1,274
+  components <=  50 cells : 1,430
+  largest component       : 572 cells
