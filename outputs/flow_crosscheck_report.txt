@@ -1,0 +1,45 @@
+NOIDA V4 — DEPRESSION x FLOW-ACCUMULATION CROSS-CHECK (evidence only)
+====================================================================
+Adds an independent HYDROLOGICAL evidence axis to V3's SPATIAL axis.
+Low/no flow support is NOT evidence of an artifact (a real closed
+depression accumulates little upslope flow). V4 removes/reclassifies
+NOTHING. V2.1.1 stays FROZEN. Grids validated (dims+transform) across
+tier, accumulation, and V3-flag rasters before analysis.
+
+Analysis CRS            : EPSG:32644
+Cell area               : 845 m^2
+Deep (>3 m) cells       : 10,796
+
+FLOW BANDS (log-scale; accumulation is heavy-tailed)
+  negligible : acc < 10
+  minor      : 10 <= acc < 100
+  moderate   : 100 <= acc < 1000
+  strong     : acc >= 1000
+
+ACCUMULATION DISTRIBUTION (percentiles)
+  whole-raster (acc>0) : P50=2.0 P75=6.0 P90=38.0 P95=171.0 P99=4377.9
+  tier-4 deep cells    : P50=7.0 P75=31.0 P90=273.5 P95=1179.2 P99=12594.4
+
+FLOW BAND COUNTS (deep cells)
+  negligible :   6,203 ( 57.5% of deep)
+  minor      :   2,984 ( 27.6% of deep)
+  moderate   :   1,008 (  9.3% of deep)
+  strong     :     601 (  5.6% of deep)
+
+V3 x FLOW EVIDENCE MATRIX (deep cells; diagnostic buckets, NOT verdicts)
+  [1] V3-unflagged + flow-supported :   1,399  strongest positive evidence of a coherent topographic/hydrological feature
+  [2] V3-unflagged + low-flow       :   8,026  plausible closed depression
+  [3] V3-suspect   + flow-supported :     210  conflicting -> human review
+  [4] V3-suspect   + low-flow       :   1,161  highest-priority artifact-suspect review (two weak signals)
+
+INTERPRETATION
+  These are evidence buckets combining two independent diagnostics, not
+  confirmations. Bucket 4 (spatially suspect AND low hydrological support)
+  is the highest-priority for further validation; bucket 1 has the strongest
+  positive evidence of a coherent topographic/hydrological feature.
+  Buckets 2 and 3 are genuinely ambiguous by design. NO cell is removed or
+  reclassified; V2.1.1 remains frozen. 'flow-supported' = moderate/strong;
+  'low-flow' = minor/negligible. Low flow does NOT imply artifact.
+
+  V4 does not identify DEM artifacts; it prioritizes candidates for further
+  validation by combining spatial and hydrological evidence.
