@@ -1,0 +1,30 @@
+NOIDA TERRAIN-DEPRESSION SUSCEPTIBILITY — methodology / metadata
+================================================================
+Source DEM      : Copernicus GLO-30 (OpenTopography)
+Analysis CRS    : UTM Zone 44N (EPSG:32644)
+Resolution      : 29.071 x 29.071 m
+Input variable  : DEM-derived depression depth raster
+                  (provided by upstream depression-analysis step;
+                   depression depth = filled DEM - original DEM)
+Candidate thresh: >= 0.2 m
+
+Classification:
+  0.2-0.5 m  -> Minor candidate
+  0.5-2.0 m  -> High candidate
+  2.0-3.0 m  -> Deep transition
+  >3.0 m     -> Deep terrain-depression candidate
+
+Interpretation:
+  These are terrain-depression susceptibility candidates,
+  NOT confirmed waterlogging locations.
+  A deep depression is NOT assumed to be a channel; that requires
+  independent flow-accumulation / drainage evidence.
+  No drainage observations were fabricated or inferred as observed
+  data where unavailable.
+
+Area per tier:
+  [0] background / non-candidate                :   370,381 cells =  313.02 km2
+  [1] Minor candidate (0.2-0.5 m)               :    35,751 cells =   30.21 km2
+  [2] High candidate (0.5-2.0 m)                :    82,147 cells =   69.43 km2
+  [3] Deep transition (2-3 m)                   :    15,332 cells =   12.96 km2
+  [4] Deep terrain-depression candidate (>3 m)  :    10,796 cells =    9.12 km2
