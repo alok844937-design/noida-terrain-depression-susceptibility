@@ -1,0 +1,30 @@
+NOIDA V5-A — MULTI-POINT ERA5 SPATIAL PROVENANCE AUDIT
+================================================================
+Source : Open-Meteo Historical Weather API -> ERA5 (reanalysis).
+         (ERA5-Land returned all-null precipitation for the tested
+          endpoint/date window and was rejected for this configuration.)
+Purpose: how many UNIQUE ERA5 grid cells do 5 study-area sample points map to?
+         (audit only; no regridding; no event claims)
+Window : 2023-07-08 .. 2023-07-10 (source-validation window, NOT a V5 event)
+
+STUDY-AREA POINTS -> RETURNED ERA5 CELL
+  NW req=(28.6856, 77.2227) -> cell=(28.75, 77.25)  n=72 miss=0 total_mm=102.2
+  NE req=(28.6856, 77.4366) -> cell=(28.75, 77.5)  n=72 miss=0 total_mm=77.9
+  SW req=(28.4747, 77.2227) -> cell=(28.5, 77.25)  n=72 miss=0 total_mm=106.5
+  SE req=(28.4747, 77.4366) -> cell=(28.5, 77.5)  n=72 miss=0 total_mm=59.6
+  C  req=(28.5801, 77.3297) -> cell=(28.5, 77.25)  n=72 miss=0 total_mm=106.5
+
+UNIQUE ERA5 CELLS REPRESENTED BY 5 SAMPLE POINTS : 4
+  (28.5, 77.25)
+  (28.5, 77.5)
+  (28.75, 77.25)
+  (28.75, 77.5)
+
+INTERPRETATION
+  The five representative study-area points map to 4 unique ERA5
+  grid cells. This audit does NOT perform exact polygon/grid-cell
+  intersection analysis. The result demonstrates that the study area spans
+  multiple coarse ERA5 cells at the sampled locations. Therefore V5 may
+  retain coarse ERA5 spatial variation at the source-cell level, but will
+  NOT interpolate rainfall onto the 30 m DEM grid or present rainfall as
+  fine spatial detail.

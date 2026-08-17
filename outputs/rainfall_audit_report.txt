@@ -1,0 +1,48 @@
+NOIDA V5 PRE-STEP — RAINFALL PROVENANCE & DISTRIBUTION AUDIT
+================================================================
+Source : Open-Meteo Historical Weather API -> ERA5
+         hourly precipitation (reanalysis, NOT gauge obs).
+         (ERA5-Land returned all-null precipitation for the tested
+          endpoint/date window and was therefore rejected for this
+          audit configuration; ERA5 used instead)
+Role   : temporal rainfall forcing plausibility, NOT observed
+         waterlogging. No DEM regridding. V2.1.1/V3/V4 untouched.
+         This window is source-validation, NOT a declared V5 event.
+
+PROVENANCE
+  requested lat/lon    : 28.58, 77.33
+  returned lat/lon     : 28.5, 77.25  (actual ERA5 grid cell)
+  returned elevation   : 205.0
+  timezone             : GMT / GMT
+  utc_offset_seconds   : 0
+  requested dates      : 2023-07-08 .. 2023-07-10
+  first timestamp      : 2023-07-08T00:00
+  last timestamp       : 2023-07-10T23:00
+  hourly timestep = 1h : True
+  variable / unit      : precipitation / mm
+  model metadata       : models=era5 (as requested)
+
+DATA QUALITY
+  total hourly steps   : 72
+  missing / None       : 0
+  negative values      : 0
+
+DISTRIBUTION (hourly precip, mm)
+  min                  : 0.000
+  P50                  : 0.650
+  P90                  : 3.990
+  P95                  : 5.045
+  max (1-hr peak)      : 7.000
+  total window rainfall: 106.500 mm
+  max consecutive wet h: 59  (audit proxy; V5 will preserve
+                         missing timestamps, not None-strip)
+
+NOTES
+  ERA5 is reanalysis/model data, not direct rain-gauge observation.
+  Native resolution ~0.25 deg (~25 km): the whole Noida study area falls in
+  a very small number of grid cells, so rainfall provides temporal event
+  forcing, NOT fine spatial rainfall variation. IMD 0.25 deg daily gridded
+  rainfall is reserved for later independent cross-check (not used here).
+  The window total is NOT declared a 'heavy event'; event selection will
+  follow an objective rule in V5, not a convenient date.
+  Raw API response + request params archived in rainfall_audit_raw.json.
