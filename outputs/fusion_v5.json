@@ -1,0 +1,319 @@
+{
+  "spec": "MAX-6h strongest forcing; bucket-2 primary (deep-only by V4 construction); bucket-1 context; 3&4 excluded; count+area; coarse ERA5 assignment; no risk score; no re-ranking",
+  "total_bucket2_cells": 8026,
+  "total_bucket2_area_km2": 6.783,
+  "percell_static": {
+    "(28.5,77.25)": {
+      "b2_cells": 5080,
+      "b2_area_km2": 4.293,
+      "b1_context_cells": 889
+    },
+    "(28.5,77.5)": {
+      "b2_cells": 835,
+      "b2_area_km2": 0.706,
+      "b1_context_cells": 113
+    },
+    "(28.75,77.25)": {
+      "b2_cells": 1990,
+      "b2_area_km2": 1.682,
+      "b1_context_cells": 379
+    },
+    "(28.75,77.5)": {
+      "b2_cells": 121,
+      "b2_area_km2": 0.102,
+      "b1_context_cells": 18
+    }
+  },
+  "events": [
+    {
+      "rank": 1,
+      "start": "2017-09-21T16:00",
+      "strongest_cell_max6": "(28.75,77.5)",
+      "strongest_max6_mm": 100.2,
+      "strongest_total_mm_at_that_cell": 262.6,
+      "b2_cells_colocated": 121,
+      "b2_area_colocated_km2": 0.102,
+      "_audit_strongest_cell_total": "(28.75,77.5)",
+      "_audit_total_vs_max6_differ": false,
+      "cell_rain": {
+        "(28.5,77.25)": {
+          "total_mm": 113.7,
+          "max_6h_mm": 43.5
+        },
+        "(28.5,77.5)": {
+          "total_mm": 170.4,
+          "max_6h_mm": 47.9
+        },
+        "(28.75,77.25)": {
+          "total_mm": 172.2,
+          "max_6h_mm": 61.8
+        },
+        "(28.75,77.5)": {
+          "total_mm": 262.6,
+          "max_6h_mm": 100.2
+        }
+      }
+    },
+    {
+      "rank": 2,
+      "start": "2021-07-17T13:00",
+      "strongest_cell_max6": "(28.75,77.5)",
+      "strongest_max6_mm": 69.9,
+      "strongest_total_mm_at_that_cell": 213.5,
+      "b2_cells_colocated": 121,
+      "b2_area_colocated_km2": 0.102,
+      "_audit_strongest_cell_total": "(28.75,77.5)",
+      "_audit_total_vs_max6_differ": false,
+      "cell_rain": {
+        "(28.5,77.25)": {
+          "total_mm": 121.2,
+          "max_6h_mm": 33.5
+        },
+        "(28.5,77.5)": {
+          "total_mm": 194.5,
+          "max_6h_mm": 69.2
+        },
+        "(28.75,77.25)": {
+          "total_mm": 148.0,
+          "max_6h_mm": 43.4
+        },
+        "(28.75,77.5)": {
+          "total_mm": 213.5,
+          "max_6h_mm": 69.9
+        }
+      }
+    },
+    {
+      "rank": 3,
+      "start": "2016-07-13T23:00",
+      "strongest_cell_max6": "(28.5,77.5)",
+      "strongest_max6_mm": 65.8,
+      "strongest_total_mm_at_that_cell": 249.0,
+      "b2_cells_colocated": 835,
+      "b2_area_colocated_km2": 0.706,
+      "_audit_strongest_cell_total": "(28.5,77.5)",
+      "_audit_total_vs_max6_differ": false,
+      "cell_rain": {
+        "(28.5,77.25)": {
+          "total_mm": 181.9,
+          "max_6h_mm": 49.4
+        },
+        "(28.5,77.5)": {
+          "total_mm": 249.0,
+          "max_6h_mm": 65.8
+        },
+        "(28.75,77.25)": {
+          "total_mm": 159.3,
+          "max_6h_mm": 31.6
+        },
+        "(28.75,77.5)": {
+          "total_mm": 188.0,
+          "max_6h_mm": 44.0
+        }
+      }
+    },
+    {
+      "rank": 4,
+      "start": "2016-07-01T16:00",
+      "strongest_cell_max6": "(28.5,77.25)",
+      "strongest_max6_mm": 65.3,
+      "strongest_total_mm_at_that_cell": 97.0,
+      "b2_cells_colocated": 5080,
+      "b2_area_colocated_km2": 4.293,
+      "_audit_strongest_cell_total": "(28.5,77.25)",
+      "_audit_total_vs_max6_differ": false,
+      "cell_rain": {
+        "(28.5,77.25)": {
+          "total_mm": 97.0,
+          "max_6h_mm": 65.3
+        },
+        "(28.5,77.5)": {
+          "total_mm": 46.6,
+          "max_6h_mm": 27.5
+        },
+        "(28.75,77.25)": {
+          "total_mm": 77.6,
+          "max_6h_mm": 39.2
+        },
+        "(28.75,77.5)": {
+          "total_mm": 42.6,
+          "max_6h_mm": 16.5
+        }
+      }
+    },
+    {
+      "rank": 5,
+      "start": "2015-07-16T07:00",
+      "strongest_cell_max6": "(28.75,77.5)",
+      "strongest_max6_mm": 49.6,
+      "strongest_total_mm_at_that_cell": 88.9,
+      "b2_cells_colocated": 121,
+      "b2_area_colocated_km2": 0.102,
+      "_audit_strongest_cell_total": "(28.75,77.5)",
+      "_audit_total_vs_max6_differ": false,
+      "cell_rain": {
+        "(28.5,77.25)": {
+          "total_mm": 37.5,
+          "max_6h_mm": 22.2
+        },
+        "(28.5,77.5)": {
+          "total_mm": 67.9,
+          "max_6h_mm": 35.8
+        },
+        "(28.75,77.25)": {
+          "total_mm": 51.1,
+          "max_6h_mm": 24.5
+        },
+        "(28.75,77.5)": {
+          "total_mm": 88.9,
+          "max_6h_mm": 49.6
+        }
+      }
+    },
+    {
+      "rank": 6,
+      "start": "2019-07-19T12:00",
+      "strongest_cell_max6": "(28.75,77.25)",
+      "strongest_max6_mm": 39.8,
+      "strongest_total_mm_at_that_cell": 69.2,
+      "b2_cells_colocated": 1990,
+      "b2_area_colocated_km2": 1.682,
+      "_audit_strongest_cell_total": "(28.5,77.25)",
+      "_audit_total_vs_max6_differ": true,
+      "cell_rain": {
+        "(28.5,77.25)": {
+          "total_mm": 69.9,
+          "max_6h_mm": 34.9
+        },
+        "(28.5,77.5)": {
+          "total_mm": 50.0,
+          "max_6h_mm": 28.1
+        },
+        "(28.75,77.25)": {
+          "total_mm": 69.2,
+          "max_6h_mm": 39.8
+        },
+        "(28.75,77.5)": {
+          "total_mm": 42.0,
+          "max_6h_mm": 21.9
+        }
+      }
+    },
+    {
+      "rank": 7,
+      "start": "2023-09-08T19:00",
+      "strongest_cell_max6": "(28.5,77.5)",
+      "strongest_max6_mm": 48.7,
+      "strongest_total_mm_at_that_cell": 76.3,
+      "b2_cells_colocated": 835,
+      "b2_area_colocated_km2": 0.706,
+      "_audit_strongest_cell_total": "(28.5,77.5)",
+      "_audit_total_vs_max6_differ": false,
+      "cell_rain": {
+        "(28.5,77.25)": {
+          "total_mm": 55.6,
+          "max_6h_mm": 31.0
+        },
+        "(28.5,77.5)": {
+          "total_mm": 76.3,
+          "max_6h_mm": 48.7
+        },
+        "(28.75,77.25)": {
+          "total_mm": 38.7,
+          "max_6h_mm": 13.7
+        },
+        "(28.75,77.5)": {
+          "total_mm": 53.5,
+          "max_6h_mm": 25.5
+        }
+      }
+    },
+    {
+      "rank": 8,
+      "start": "2022-06-29T10:00",
+      "strongest_cell_max6": "(28.75,77.25)",
+      "strongest_max6_mm": 43.5,
+      "strongest_total_mm_at_that_cell": 80.1,
+      "b2_cells_colocated": 1990,
+      "b2_area_colocated_km2": 1.682,
+      "_audit_strongest_cell_total": "(28.75,77.25)",
+      "_audit_total_vs_max6_differ": false,
+      "cell_rain": {
+        "(28.5,77.25)": {
+          "total_mm": 60.4,
+          "max_6h_mm": 22.8
+        },
+        "(28.5,77.5)": {
+          "total_mm": 44.5,
+          "max_6h_mm": 20.4
+        },
+        "(28.75,77.25)": {
+          "total_mm": 80.1,
+          "max_6h_mm": 43.5
+        },
+        "(28.75,77.5)": {
+          "total_mm": 71.1,
+          "max_6h_mm": 33.2
+        }
+      }
+    },
+    {
+      "rank": 9,
+      "start": "2015-07-05T09:00",
+      "strongest_cell_max6": "(28.5,77.25)",
+      "strongest_max6_mm": 39.9,
+      "strongest_total_mm_at_that_cell": 180.5,
+      "b2_cells_colocated": 5080,
+      "b2_area_colocated_km2": 4.293,
+      "_audit_strongest_cell_total": "(28.75,77.25)",
+      "_audit_total_vs_max6_differ": true,
+      "cell_rain": {
+        "(28.5,77.25)": {
+          "total_mm": 180.5,
+          "max_6h_mm": 39.9
+        },
+        "(28.5,77.5)": {
+          "total_mm": 141.0,
+          "max_6h_mm": 23.1
+        },
+        "(28.75,77.25)": {
+          "total_mm": 184.9,
+          "max_6h_mm": 31.2
+        },
+        "(28.75,77.5)": {
+          "total_mm": 154.7,
+          "max_6h_mm": 21.9
+        }
+      }
+    },
+    {
+      "rank": 10,
+      "start": "2019-08-16T22:00",
+      "strongest_cell_max6": "(28.5,77.5)",
+      "strongest_max6_mm": 45.8,
+      "strongest_total_mm_at_that_cell": 73.4,
+      "b2_cells_colocated": 835,
+      "b2_area_colocated_km2": 0.706,
+      "_audit_strongest_cell_total": "(28.5,77.5)",
+      "_audit_total_vs_max6_differ": false,
+      "cell_rain": {
+        "(28.5,77.25)": {
+          "total_mm": 28.3,
+          "max_6h_mm": 11.3
+        },
+        "(28.5,77.5)": {
+          "total_mm": 73.4,
+          "max_6h_mm": 45.8
+        },
+        "(28.75,77.25)": {
+          "total_mm": 34.1,
+          "max_6h_mm": 15.9
+        },
+        "(28.75,77.5)": {
+          "total_mm": 68.4,
+          "max_6h_mm": 31.3
+        }
+      }
+    }
+  ]
+}

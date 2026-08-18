@@ -1,0 +1,36 @@
+NOIDA V5 — RAINFALL x TERRAIN CO-LOCATION (frozen spec; MAX-6h)
+======================================================================
+Scope: V4 bucket-2 (closed depressions) PRIMARY; bucket-1 CONTEXT; 3&4 excluded.
+Depth: bucket-2 is deep-only (>3m) BY V4 CONSTRUCTION (8026/8026 tier-4);
+       a depth sub-split is not applicable and is omitted.
+Forcing: strongest coarse cell = highest event MAX rolling-6h (coherent with
+       the frozen V5 event-ranking metric). Coarse ~25km ASSIGNMENT, NOT
+       forcing attribution. COUNT + conditional-AREA. No risk score, no re-ranking.
+
+Total bucket-2 cells        : 8,026 (6.783 km2)
+(total-based vs max6-based strongest differ in 2/10 events; max6 is frozen)
+
+BUCKET-2 SUSCEPTIBLE AREA PER COARSE ERA5 CELL (static assignment)
+  (28.5,77.25)    : b2= 5080 (  4.29 km2)  b1-context=889
+  (28.5,77.5)     : b2=  835 (  0.71 km2)  b1-context=113
+  (28.75,77.25)   : b2= 1990 (  1.68 km2)  b1-context=379
+  (28.75,77.5)    : b2=  121 (  0.10 km2)  b1-context=18
+
+PER-EVENT: SUSCEPTIBLE-AREA CO-LOCATION WITH STRONGEST COARSE FORCING (MAX-6h)
+  [ 1] 2017-09-21T16:00  strongest(max6)=(28.75,77.5) (6h=100.2mm)  b2 co-located=121 (0.10 km2)
+  [ 2] 2021-07-17T13:00  strongest(max6)=(28.75,77.5) (6h=69.9mm)  b2 co-located=121 (0.10 km2)
+  [ 3] 2016-07-13T23:00  strongest(max6)=(28.5,77.5) (6h=65.8mm)  b2 co-located=835 (0.71 km2)
+  [ 4] 2016-07-01T16:00  strongest(max6)=(28.5,77.25) (6h=65.3mm)  b2 co-located=5080 (4.29 km2)
+  [ 5] 2015-07-16T07:00  strongest(max6)=(28.75,77.5) (6h=49.6mm)  b2 co-located=121 (0.10 km2)
+  [ 6] 2019-07-19T12:00  strongest(max6)=(28.75,77.25) (6h=39.8mm)  b2 co-located=1990 (1.68 km2)  [total-strongest differs]
+  [ 7] 2023-09-08T19:00  strongest(max6)=(28.5,77.5) (6h=48.7mm)  b2 co-located=835 (0.71 km2)
+  [ 8] 2022-06-29T10:00  strongest(max6)=(28.75,77.25) (6h=43.5mm)  b2 co-located=1990 (1.68 km2)
+  [ 9] 2015-07-05T09:00  strongest(max6)=(28.5,77.25) (6h=39.9mm)  b2 co-located=5080 (4.29 km2)  [total-strongest differs]
+  [10] 2019-08-16T22:00  strongest(max6)=(28.5,77.5) (6h=45.8mm)  b2 co-located=835 (0.71 km2)
+
+INTERPRETATION
+  Reports where V4-identified terrain-susceptible closed depressions spatially
+  CO-LOCATE with the strongest coarse ERA5 forcing (max-6h) during frozen
+  events. NOT observed waterlogging, NOT a risk score; rainfall NOT resolved
+  to 30 m; 'strongest coarse cell' is a ~25 km assignment. Confirmation needs
+  observed data (V7) and urban context (V6).
