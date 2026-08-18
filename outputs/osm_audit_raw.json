@@ -1,0 +1,71 @@
+{
+  "bbox_WSEN": [
+    77.22271880122497,
+    28.474656406941737,
+    77.4366331640628,
+    28.685564385888632
+  ],
+  "summary": {
+    "buildings": {
+      "count": 126771,
+      "geom_types": {
+        "Polygon": 126335,
+        "Point": 378,
+        "MultiPolygon": 58
+      }
+    },
+    "roads": {
+      "count": 71936,
+      "geom_types": {
+        "LineString": 69130,
+        "Point": 2748,
+        "Polygon": 58
+      }
+    },
+    "landuse": {
+      "count": 2377,
+      "geom_types": {
+        "Polygon": 2332,
+        "Point": 37,
+        "MultiPolygon": 6,
+        "LineString": 2
+      },
+      "top_landuse": {
+        "residential": 1083,
+        "commercial": 279,
+        "grass": 240,
+        "industrial": 135,
+        "basin": 132,
+        "farmland": 102,
+        "retail": 73,
+        "construction": 50,
+        "reservoir": 41,
+        "recreation_ground": 37,
+        "education": 30,
+        "railway": 20,
+        "military": 15,
+        "religious": 15,
+        "hospital": 14
+      }
+    },
+    "waterways": {
+      "count": 491,
+      "geom_types": {
+        "LineString": 487,
+        "Point": 2,
+        "Polygon": 2
+      },
+      "waterway_subtypes": {
+        "drain": 300,
+        "ditch": 79,
+        "canal": 57,
+        "stream": 23,
+        "river": 20,
+        "dam": 6,
+        "weir": 5,
+        "water_point": 1
+      },
+      "drainage_related": 459
+    }
+  }
+}

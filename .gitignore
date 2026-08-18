@@ -5,3 +5,4 @@ data/*.tif
 data/*.tar.gz
 outputs/viz_*.tif
 outputs/*.tar.gz
+outputs/osm_cache/

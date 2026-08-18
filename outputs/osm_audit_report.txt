@@ -1,0 +1,27 @@
+NOIDA V6-AUDIT — OSM URBAN-CONTEXT AVAILABILITY (audit only)
+================================================================
+Access: OSMnx (Overpass). Availability/coverage only; NO fusion, NO
+        susceptibility change, NO risk score. V4/V5 untouched.
+Safeguards: OSM buildings/roads = built/transport CONTEXT proxy, NOT
+        'impervious surface %'. Missing OSM drainage != no drainage on ground.
+Study bbox (W,S,E,N): (77.2227, 28.4747, 77.4366, 28.6856)
+
+LAYER AVAILABILITY
+  buildings : count=126,771  geom={'Polygon': 126335, 'Point': 378, 'MultiPolygon': 58}
+  roads     : count=71,936  geom={'LineString': 69130, 'Point': 2748, 'Polygon': 58}
+  landuse   : count=2,377  geom={'Polygon': 2332, 'Point': 37, 'MultiPolygon': 6, 'LineString': 2}
+              top land-use: {'residential': 1083, 'commercial': 279, 'grass': 240, 'industrial': 135, 'basin': 132, 'farmland': 102, 'retail': 73, 'construction': 50, 'reservoir': 41, 'recreation_ground': 37, 'education': 30, 'railway': 20, 'military': 15, 'religious': 15, 'hospital': 14}
+  waterways : count=491  geom={'LineString': 487, 'Point': 2, 'Polygon': 2}
+              waterway subtypes: {'drain': 300, 'ditch': 79, 'canal': 57, 'stream': 23, 'river': 20, 'dam': 6, 'weir': 5, 'water_point': 1}
+              drainage-related (drain/ditch/canal/stream): 459
+
+BUCKET-2 OVERLAP (audit note)
+  bucket-2 total cells = 8,026. Spatial overlap with OSM buildings is deferred to V6 analysis (audit only here).
+
+PROVISIONAL READING (not a decision)
+  Role A (built/transport context) is viable if buildings + roads are well
+  mapped. Role B (drainage constraint) is viable ONLY if drainage-related
+  waterways are sufficiently mapped; a low/zero drainage count means OSM
+  drainage is insufficient for a defensible constraint analysis (a data gap,
+  NOT evidence of absent drainage on the ground). Role decision follows this
+  audit; no urban modifier or risk score is defined here.
