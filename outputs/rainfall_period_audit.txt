@@ -1,0 +1,42 @@
+NOIDA V5-C — MULTI-YEAR MONSOON PERIOD AUDIT (audit only)
+================================================================
+Source : Open-Meteo Historical Weather API -> ERA5 (reanalysis).
+Period : 2015-2023, June-September, hourly.
+Cells  : the four ERA5 cells represented by the five spatial-audit points.
+         The 4-cell mean is an EQUAL-WEIGHT mean of four represented ERA5
+         source cells, NOT an area-weighted rainfall estimate for the
+         Noida polygon.
+Purpose: dataset usability only. NO event selected, NO threshold applied,
+         V4/V5 outputs untouched.
+
+GRID-CELL PROVENANCE
+  requested (28.5, 77.25) -> returned (28.5, 77.25) elev=243.0 unit=mm model=era5
+  requested (28.5, 77.5) -> returned (28.5, 77.5) elev=197.0 unit=mm model=era5
+  requested (28.75, 77.25) -> returned (28.75, 77.25) elev=208.0 unit=mm model=era5
+  requested (28.75, 77.5) -> returned (28.75, 77.5) elev=216.0 unit=mm model=era5
+
+TIMESTAMP INTEGRITY
+  all 4 cells timestamp-aligned : True
+  expected hours (Jun-Sep x9yr) : 26,352
+  actual hours per cell         : 26,352
+  actual == expected            : True
+  duplicate timestamps per cell : {(28.5, 77.25): 0, (28.5, 77.5): 0, (28.75, 77.25): 0, (28.75, 77.5): 0}
+
+PER-CELL DATA QUALITY + DISTRIBUTION (mm)
+  (28.5, 77.25): steps=26,352 miss=0 neg=0 P50=0.00 P95=1.10 P99=3.40 max=21.10
+  (28.5, 77.5): steps=26,352 miss=0 neg=0 P50=0.00 P95=1.10 P99=4.00 max=26.00
+  (28.75, 77.25): steps=26,352 miss=0 neg=0 P50=0.00 P95=1.10 P99=3.40 max=12.50
+  (28.75, 77.5): steps=26,352 miss=0 neg=0 P50=0.00 P95=1.30 P99=3.80 max=18.30
+
+4-CELL EQUAL-WEIGHT MEAN SERIES (candidate event-detection basis;
+ when all 4 cells are present)
+  usable mean steps (all cells present) : 26,352
+  steps with >=1 cell missing           : 0
+  mean P50 / P95 / P99 / max (mm)        : 0.00 / 1.18 / 3.35 / 13.32
+
+VERDICT NOTES
+  This audit only establishes whether the multi-year monsoon dataset is
+  usable (aligned, low-missing, no duplicates, sane distribution). The
+  event-selection RULE is written separately and independently AFTER this,
+  and will NOT be tuned by looking at these numbers. Per-cell series are
+  archived under outputs/rainfall_period_raw/ for reproducibility.
