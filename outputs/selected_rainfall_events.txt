@@ -1,0 +1,30 @@
+NOIDA V5 — SELECTED RAINFALL EVENTS (frozen rule; run once)
+==================================================================
+Signal: 4-cell equal-weight hourly mean, 2015-2023 Jun-Sep (ERA5).
+Rule (frozen): wet>=0.1mm/h; 6-h dry-gap separation (missing breaks
+  continuity, not counted as dry); qualify if total>=10mm AND
+  duration>=3h AND max-roll6>=5mm; rank by max-roll6 (desc), tie-break
+  max-1h; Top 10. max-1h & total are secondary descriptors. No tuning.
+
+Total raw wet spells found     : 710
+Qualifying events              : 110
+Selected (Top 10)              : 10
+
+SELECTED EVENTS (ranked by max rolling-6h)
+   #  start            dur_h   total   roll6   roll3  max1h
+   1  2017-09-21T16:00    41   179.7    57.6    30.8   10.7
+   2  2021-07-17T13:00    83   169.3    47.6    27.2    9.4
+   3  2016-07-13T23:00   100   194.6    43.6    24.9    8.8
+   4  2016-07-01T16:00    45    66.0    36.5    22.8    9.2
+   5  2015-07-16T07:00    32    61.4    32.8    17.6    6.2
+   6  2019-07-19T12:00    49    57.8    31.2    17.8    6.8
+   7  2023-09-08T19:00    42    56.0    29.7    16.6    5.6
+   8  2022-06-29T10:00    53    64.0    28.1    15.7    5.5
+   9  2015-07-05T09:00   171   165.3    26.3    14.5    5.0
+  10  2019-08-16T22:00    37    51.0    23.8    15.5    6.5
+
+NOTES
+  Events objectively selected by the frozen rule; parameters not tuned after
+  inspecting results. These are rainfall FORCING events, not observed
+  waterlogging. Per-cell metrics and fusion with V4 terrain/flow evidence
+  follow next. V2.1.1/V3/V4 remain frozen.
