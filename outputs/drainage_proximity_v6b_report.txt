@@ -1,0 +1,36 @@
+NOIDA V6-B — MAPPED DRAINAGE PROXIMITY of terrain-susceptible depressions
+========================================================================
+DESCRIPTIVE proximity only. PRIMARY mapped drainage = drain + ditch.
+Canal/stream/river reported separately as waterways (NOT drainage).
+CAVEATS: distances are to OSM-MAPPED features, NOT actual drainage
+availability/completeness. Absence of a mapped drain != no drainage on the
+ground. OSM drainage is a PARTIAL mapped network; completeness unknown.
+NOT risk thresholds; no 'drain nearby = safe' / 'no drain = dangerous'.
+
+OSM mapped drains (drain/ditch)         : 379
+OSM waterways (canal/stream/river)      : 100  (separate context)
+Bucket-2 cells                          : 8,026
+
+WHOLE BUCKET-2
+  cells=8026 area=6.783km2  nearest drain/ditch: mean=891.1 median=767.4 P25=377.8 P75=1192.5 P90=1736.3 max=3717.0 (m)
+  within <=50m=4.0%  <=100m=6.3%  <=250m=15.3%  >250m=84.7%
+
+PER ERA5 QUADRANT (continuity with V5/V6-A)
+  (28.5,77.25)  <-- SW: median=736.5m  <=100m=7.7%  >250m=81.7%
+  (28.5,77.5): median=1137.5m  <=100m=1.3%  >250m=89.7%
+  (28.75,77.25): median=727.0m  <=100m=5.0%  >250m=89.6%
+  (28.75,77.5): median=916.3m  <=100m=0.0%  >250m=95.0%
+
+SW SUSCEPTIBLE ZONE (28.5,77.25) — V5/V6-A focus (63% of bucket-2)
+  cells=5080 area=4.293km2  nearest drain/ditch: mean=847.6 median=736.5 P25=332.0 P75=1171.3 P90=1702.8 max=3332.8 (m)
+  within <=50m=5.1%  <=100m=7.7%  <=250m=18.3%  >250m=81.7%
+
+SEPARATE WATERWAY PROXIMITY (canal/stream/river; whole bucket-2)
+  nearest waterway: median=981.9m mean=1200.5m (context only; a waterway is NOT stormwater drainage)
+
+INTERPRETATION
+  Susceptible depressions are generally FAR from OSM-mapped drainage
+  (median ~767 m; ~85% beyond 250 m). CRITICAL: only ~379 mapped drains
+  exist for all of Noida, so this most likely reflects OSM mapped-network
+  SPARSITY, NOT actual drainage absence on the ground. It is NOT a statement
+  about real drainage adequacy or waterlogging. Ground truth needs V7.
