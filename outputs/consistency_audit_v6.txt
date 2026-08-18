@@ -1,0 +1,19 @@
+NOIDA V6 FINAL CONSISTENCY AUDIT (pre-V7 baseline lock)
+============================================================
+
+CHECKS PASSED:
+  [OK] bucket-2 count = 8026 OK
+  [OK] bucket-2 deep-only (tier-4): 8026 OK
+  [OK] selected events = 10 (selection & per-cell) OK
+  [OK] ERA5 cell labels identical across V5/V6 (4 cells) OK
+  [OK] quadrant (28.5,77.25): 5080 cells (fusion==v6a==v6b) OK
+  [OK] quadrant (28.5,77.5): 835 cells (fusion==v6a==v6b) OK
+  [OK] quadrant (28.75,77.25): 1990 cells (fusion==v6a==v6b) OK
+  [OK] quadrant (28.75,77.5): 121 cells (fusion==v6a==v6b) OK
+  [OK] quadrant sum 8026 == bucket-2 8026 OK
+  [OK] SW (28.5,77.25): 5080 cells, 4.293 km2, 63.3% of bucket-2
+  [OK] total bucket-2 area = 6.783 km2 (expect ~6.783)
+
+PROBLEMS: none — baseline consistent.
+
+VERDICT: BASELINE CONSISTENT — safe to start V7
