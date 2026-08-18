@@ -1,0 +1,32 @@
+NOIDA V6-A — URBAN CONTEXT OF TERRAIN-SUSCEPTIBLE DEPRESSIONS (bucket-2)
+========================================================================
+Characterizes built/transport context. Does NOT assign a causal risk
+direction. Building coverage = spatial fact; buildings != measured
+imperviousness. No risk score, no weights, no observed-waterlogging claim.
+OSM: 126,393 building footprint geometries, 69,130 road lines.
+Bucket-2 total: 8,026 cells.
+
+WHOLE BUCKET-2
+  building coverage mean=0.0667 median=0.0  %area with any building=17.9%
+  coverage bands: {'0%': 6589, '0-25%': 644, '25-50%': 345, '50-75%': 231, '75-100%': 217}
+  road length: mean=9.8 m/cell, 11616.5 m/km2
+
+PER ERA5 QUADRANT (continuity with V5)
+  (28.5,77.25)    : cells= 5080 cov_mean=0.056 any=14% road=10073m/km2  <-- SW HIGHLIGHT
+  (28.5,77.5)     : cells=  835 cov_mean=0.118 any=35% road=16742m/km2
+  (28.75,77.25)   : cells= 1990 cov_mean=0.069 any=19% road=12792m/km2
+  (28.75,77.5)    : cells=  121 cov_mean=0.132 any=35% road=21730m/km2
+
+SW SUSCEPTIBLE ZONE (28.5,77.25) — V5 focus (63% of bucket-2)
+  cells=5080  area=4.293 km2
+  building coverage mean=0.0558 median=0.0  %area any building=14.4%
+  coverage bands: {'0%': 4349, '0-25%': 338, '25-50%': 157, '50-75%': 91, '75-100%': 145}
+  road length: 10072.9 m/km2
+
+LAND-USE CONTEXT (bbox counts): {'residential': 1083, 'commercial': 279, 'grass': 240, 'industrial': 135, 'basin': 132, 'farmland': 102, 'retail': 73, 'construction': 50, 'reservoir': 41, 'recreation_ground': 37, 'education': 30, 'railway': 20}
+
+INTERPRETATION
+  These are contextual facts about where terrain-susceptible closed
+  depressions sit relative to OSM-mapped buildings/roads/land-use. No causal
+  risk direction is assigned (a built-up depression may be more OR less prone
+  to ponding — unresolved here). Confirmation requires observed data (V7).

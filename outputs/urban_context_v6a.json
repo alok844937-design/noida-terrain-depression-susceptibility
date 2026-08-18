@@ -1,0 +1,118 @@
+{
+  "total_bucket2_cells": 8026,
+  "n_buildings": 126393,
+  "n_roads": 69130,
+  "whole_bucket2": {
+    "cells": 8026,
+    "area_km2": 6.783,
+    "cov_mean": 0.0667,
+    "cov_median": 0.0,
+    "pct_area_any_building": 17.9,
+    "coverage_bands": {
+      "0%": 6589,
+      "0-25%": 644,
+      "25-50%": 345,
+      "50-75%": 231,
+      "75-100%": 217
+    },
+    "road_len_m_mean": 9.8,
+    "road_len_m_per_km2": 11616.5
+  },
+  "per_quadrant": {
+    "(28.5,77.25)": {
+      "cells": 5080,
+      "area_km2": 4.293,
+      "cov_mean": 0.0558,
+      "cov_median": 0.0,
+      "pct_area_any_building": 14.4,
+      "coverage_bands": {
+        "0%": 4349,
+        "0-25%": 338,
+        "25-50%": 157,
+        "50-75%": 91,
+        "75-100%": 145
+      },
+      "road_len_m_mean": 8.5,
+      "road_len_m_per_km2": 10072.9
+    },
+    "(28.5,77.5)": {
+      "cells": 835,
+      "area_km2": 0.706,
+      "cov_mean": 0.1185,
+      "cov_median": 0.0,
+      "pct_area_any_building": 34.7,
+      "coverage_bands": {
+        "0%": 545,
+        "0-25%": 134,
+        "25-50%": 67,
+        "50-75%": 65,
+        "75-100%": 24
+      },
+      "road_len_m_mean": 14.1,
+      "road_len_m_per_km2": 16741.6
+    },
+    "(28.75,77.25)": {
+      "cells": 1990,
+      "area_km2": 1.682,
+      "cov_mean": 0.0688,
+      "cov_median": 0.0,
+      "pct_area_any_building": 18.8,
+      "coverage_bands": {
+        "0%": 1616,
+        "0-25%": 158,
+        "25-50%": 106,
+        "50-75%": 64,
+        "75-100%": 46
+      },
+      "road_len_m_mean": 10.8,
+      "road_len_m_per_km2": 12791.5
+    },
+    "(28.75,77.5)": {
+      "cells": 121,
+      "area_km2": 0.102,
+      "cov_mean": 0.1323,
+      "cov_median": 0.0,
+      "pct_area_any_building": 34.7,
+      "coverage_bands": {
+        "0%": 79,
+        "0-25%": 14,
+        "25-50%": 15,
+        "50-75%": 11,
+        "75-100%": 2
+      },
+      "road_len_m_mean": 18.4,
+      "road_len_m_per_km2": 21730.0
+    }
+  },
+  "sw_zone": {
+    "cells": 5080,
+    "area_km2": 4.293,
+    "cov_mean": 0.0558,
+    "cov_median": 0.0,
+    "pct_area_any_building": 14.4,
+    "coverage_bands": {
+      "0%": 4349,
+      "0-25%": 338,
+      "25-50%": 157,
+      "50-75%": 91,
+      "75-100%": 145
+    },
+    "road_len_m_mean": 8.5,
+    "road_len_m_per_km2": 10072.9
+  },
+  "landuse_context_counts": {
+    "residential": 1083,
+    "commercial": 279,
+    "grass": 240,
+    "industrial": 135,
+    "basin": 132,
+    "farmland": 102,
+    "retail": 73,
+    "construction": 50,
+    "reservoir": 41,
+    "recreation_ground": 37,
+    "education": 30,
+    "railway": 20
+  },
+  "note": "characterization only; no risk direction; buildings != imperviousness"
+}
