@@ -1,0 +1,36 @@
+NOIDA V7-A — OBSERVED WATERLOGGING PROVENANCE AUDIT
+============================================================
+These are OBSERVED WATERLOGGING REPORTS (sector/landmark precision),
+NOT ground truth and NOT yet matched to susceptibility. Every record keeps
+verbatim location text + source + a verification_status flag.
+
+Total records                : 8
+verification_status          : {'VERIFIED': 3, 'USER-REPORTED': 5}
+study_area_status            : {'in_bbox': 7, 'out_of_bbox': 1}
+classification               : {'KEEP': 1, 'REJECT': 1, 'KEEP-WITH-UNCERTAINTY': 5, 'CONTEXT-ONLY': 1}
+source_tier                  : {'A': 4, 'B': 4}
+spatial_precision_class      : {'named_place': 4, 'sector': 2, 'road_segment': 1, 'broad_area': 1}
+officially_reported          : {'yes': 4, 'no': 2, 'partial': 2}
+
+NOTE: source_tier != verification_status. Tier = the source's CLAIMED
+  origin (official/news); verification = whether WE independently re-checked
+  it. e.g. Tier-A + USER-REPORTED = claims an official origin, not yet
+  re-verified by us. Both are recorded honestly and separately.
+
+USABLE FOR VALIDATION (KEEP / KEEP-WITH-UNCERTAINTY, in_bbox):
+  [OBS-004-N  ] 2024-08-08  named_place  tier-A VERIFIED
+  [OBS-013    ] 2021-09-01  named_place  tier-B VERIFIED
+  [OBS-001    ] 2023-07-06  sector       tier-A USER-REPORTED
+  [OBS-007    ] 2025-08-16  road_segment tier-B USER-REPORTED
+  [OBS-003    ] 2024-07-25  named_place  tier-B USER-REPORTED
+  [OBS-002    ] 2024-06-30  sector       tier-B USER-REPORTED
+
+  -> 6 records pass the usability filter (KEEP/KEEP-WITH-UNCERTAINTY, in_bbox); only 2 are independently VERIFIED; 4 are user-reported (source pending).
+
+HONEST DATA-AVAILABILITY VERDICT
+  Observed waterlogging evidence exists at sector/landmark precision from
+  official (Tier A) and news (Tier B) sources. BUT: (a) no public downloadable
+  point-level complaint database was found; (b) several candidate reports could
+  not be re-verified to an exact source URL in this pass; (c) sector-level
+  precision is COARSER than the 30 m susceptibility grid. Therefore V7 supports
+  QUALITATIVE corroboration only, NOT quantitative cell-level validation.
