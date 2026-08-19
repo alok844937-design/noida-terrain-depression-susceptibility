@@ -1,0 +1,38 @@
+NOIDA V7-B — COARSE SPATIAL CORROBORATION (EXPLORATORY, PROVISIONAL)
+==================================================================
+Observed waterlogging reports vs V4 bucket-2 susceptibility, at
+uncertainty-zone scale. Coordinates are approx_unverified -> PROVISIONAL.
+This does NOT establish that individual susceptible cells flooded.
+
+raster CRS = EPSG:32644, resolution = 29.07 m
+bucket-2 cells = 8026, null-domain cells (full DEM) = 514407
+
+PRIMARY (independently verified parents only):
+  parent observations           : 2 (STATISTICAL UNIT)
+  parent obs corroborated       : 2
+  location instances            : 10 (spatial unit)
+  instances overlapping bucket-2: 7 (70.0%)
+
+SENSITIVITY (user-reported parents, source pending):
+  parent observations           : 3
+  parent obs corroborated       : 3
+  location instances            : 10
+  instances overlapping bucket-2: 9 (90.0%)
+
+NULL MODEL (random points in FULL DEM footprint, same radius mix):
+  seed                          : 20260819
+  null samples                  : 10000
+  null instance-overlap rate    : 56.8%
+  observed PRIMARY instance rate: 70.0%
+  difference (obs - null)       : +13.2 pts
+  bootstrap P(null >= observed) : 0.291  [EXPLORATORY, n=10 instances]
+
+INTERPRETATION
+  Exploratory spatial comparison only. With just 2 verified parent
+  observations, no statistical power is claimed. The null comparison
+  indicates whether observed reports intersect susceptibility more than
+  random locations across Noida would, at coarse uncertainty-zone scale.
+
+  "Observed waterlogging reports were spatially corroborated against the
+   V4 susceptibility layer at uncertainty-zone scale; this does not
+   establish that individual susceptible cells flooded."

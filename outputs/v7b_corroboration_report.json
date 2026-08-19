@@ -1,0 +1,32 @@
+{
+  "provisional": true,
+  "coordinates": "approx_unverified",
+  "null_domain": "full_dem_footprint",
+  "primary": {
+    "label": "PRIMARY (verified parents only)",
+    "instances_total": 10,
+    "instances_overlapping": 7,
+    "instance_overlap_rate": 0.7,
+    "parent_observations_total": 2,
+    "parent_observations_corroborated": 2
+  },
+  "sensitivity": {
+    "label": "SENSITIVITY (user-reported parents)",
+    "instances_total": 10,
+    "instances_overlapping": 9,
+    "instance_overlap_rate": 0.9,
+    "parent_observations_total": 3,
+    "parent_observations_corroborated": 3
+  },
+  "null_model": {
+    "seed": 20260819,
+    "n_null": 10000,
+    "null_instance_overlap_rate": 0.5675,
+    "observed_primary_instance_rate": 0.7,
+    "difference_pts": 0.13249999999999995,
+    "bootstrap_p_null_ge_observed": 0.291,
+    "bootstrap_B": 2000,
+    "exploratory": true
+  },
+  "wording": "Observed waterlogging reports were spatially corroborated against the V4 susceptibility layer at uncertainty-zone scale; this does not establish that individual susceptible cells flooded."
+}
