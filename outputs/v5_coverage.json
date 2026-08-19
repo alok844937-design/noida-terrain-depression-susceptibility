@@ -1,0 +1,10 @@
+{
+  "_note": "ERA5 coverage window for the V5 rainfall catalogue, transcribed from rainfall_period_audit.txt (V5-C multi-year monsoon period audit). Used by V7-D to flag which observations fall inside/outside the ERA5-testable window. This is an audit artifact, not a hardcoded constant.",
+  "source_artifact": "outputs/rainfall_period_audit.txt",
+  "dataset": "Open-Meteo Historical API -> ERA5 (reanalysis)",
+  "year_start": 2015,
+  "year_end": 2023,
+  "months_covered": [6, 7, 8, 9],
+  "months_note": "June-September (monsoon) only; October-May NOT in the V5 series",
+  "hours_per_cell": 26352
+}

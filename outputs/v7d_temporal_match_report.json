@@ -1,0 +1,80 @@
+{
+  "v5_windows": [
+    {
+      "start": "2017-09-21",
+      "end": "2017-09-23",
+      "roll6_mm": 57.62
+    },
+    {
+      "start": "2021-07-17",
+      "end": "2021-07-20",
+      "roll6_mm": 47.6
+    },
+    {
+      "start": "2016-07-13",
+      "end": "2016-07-18",
+      "roll6_mm": 43.6
+    },
+    {
+      "start": "2016-07-01",
+      "end": "2016-07-03",
+      "roll6_mm": 36.55
+    },
+    {
+      "start": "2015-07-16",
+      "end": "2015-07-17",
+      "roll6_mm": 32.75
+    },
+    {
+      "start": "2019-07-19",
+      "end": "2019-07-21",
+      "roll6_mm": 31.18
+    },
+    {
+      "start": "2023-09-08",
+      "end": "2023-09-10",
+      "roll6_mm": 29.72
+    },
+    {
+      "start": "2022-06-29",
+      "end": "2022-07-01",
+      "roll6_mm": 28.05
+    },
+    {
+      "start": "2015-07-05",
+      "end": "2015-07-12",
+      "roll6_mm": 26.33
+    },
+    {
+      "start": "2019-08-16",
+      "end": "2019-08-18",
+      "roll6_mm": 23.82
+    }
+  ],
+  "n_usable_observations": 6,
+  "A_event_window_overlap": {
+    "exact": 0,
+    "pm1_day": 0,
+    "pm2_day": 0
+  },
+  "B_documented_rainfall": {
+    "documented": 1,
+    "total": 6,
+    "note": "Source-verification status is reported per observation in the rainfall table."
+  },
+  "C_v5_coverage": {
+    "inside": 2,
+    "outside": 4,
+    "year_range": [
+      2015,
+      2023
+    ],
+    "months": [
+      6,
+      7,
+      8,
+      9
+    ]
+  },
+  "wording_lock": "no V5 Top-10 temporal overlap does NOT mean no rainfall trigger; it reflects the V5 ERA5 coverage window vs observation record mismatch"
+}

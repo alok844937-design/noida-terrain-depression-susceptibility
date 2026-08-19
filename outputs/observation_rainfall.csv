@@ -1,0 +1,7 @@
+observation_id,event_date,rainfall_amount_mm,rainfall_source,rainfall_status,source_verification,rainfall_evidence
+OBS-004-N,2024-08-08,,,MISSING,NOT_AVAILABLE,"no explicit rainfall figure in the verified hotspot report"
+OBS-013,2021-09-01,,,MISSING,NOT_AVAILABLE,"2021 HT report described heavy rain but no explicit mm figure in our record"
+OBS-001,2023-07-06,,,MISSING,NOT_AVAILABLE,"Authority complaint-count report; no explicit mm figure in our record"
+OBS-007,2025-08-16,26.5,news_report_IMD_mentioned,DOCUMENTED,PENDING_REVERIFICATION,"observation record explicitly reports 26.5 mm per IMD; source URL still to be re-verified"
+OBS-003,2024-07-25,,,MISSING,NOT_AVAILABLE,"no explicit mm figure in our record"
+OBS-002,2024-06-30,,,MISSING,NOT_AVAILABLE,"no explicit mm figure in our record"

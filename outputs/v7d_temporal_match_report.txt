@@ -1,0 +1,68 @@
+NOIDA V7-D — TEMPORAL MATCH (observed vs V5 rainfall catalogue)
+================================================================
+Three independent evidence layers (never mixed). 'No V5 overlap' does
+NOT mean 'no rainfall trigger' — see Output C (coverage mismatch).
+
+V5 Top-10 event windows (from outputs/selected_rainfall_events.json, multi-day intervals):
+  2017-09-21 -> 2017-09-23  (roll6=57.62 mm)
+  2021-07-17 -> 2021-07-20  (roll6=47.6 mm)
+  2016-07-13 -> 2016-07-18  (roll6=43.6 mm)
+  2016-07-01 -> 2016-07-03  (roll6=36.55 mm)
+  2015-07-16 -> 2015-07-17  (roll6=32.75 mm)
+  2019-07-19 -> 2019-07-21  (roll6=31.18 mm)
+  2023-09-08 -> 2023-09-10  (roll6=29.72 mm)
+  2022-06-29 -> 2022-07-01  (roll6=28.05 mm)
+  2015-07-05 -> 2015-07-12  (roll6=26.33 mm)
+  2019-08-16 -> 2019-08-18  (roll6=23.82 mm)
+
+----------------------------------------------------------------
+A. V5 EVENT-WINDOW OVERLAP (obs date vs full event interval):
+   observation  date         exact  +/-1d  +/-2d
+   OBS-004-N    2024-08-08   -      -      -
+   OBS-013      2021-09-01   -      -      -
+   OBS-001      2023-07-06   -      -      -
+   OBS-007      2025-08-16   -      -      -
+   OBS-003      2024-07-25   -      -      -
+   OBS-002      2024-06-30   -      -      -
+   -> exact overlap: 0/6;  +/-1 day: 0/6;  +/-2 day: 0/6
+
+----------------------------------------------------------------
+B. DOCUMENTED RAINFALL EVIDENCE (from frozen rainfall table):
+   observation  date             mm  status / source-verif
+   OBS-004-N    2024-08-08       --  MISSING / NOT_AVAILABLE
+   OBS-013      2021-09-01       --  MISSING / NOT_AVAILABLE
+   OBS-001      2023-07-06       --  MISSING / NOT_AVAILABLE
+   OBS-007      2025-08-16     26.5  DOCUMENTED / PENDING_REVERIFICATION
+   OBS-003      2024-07-25       --  MISSING / NOT_AVAILABLE
+   OBS-002      2024-06-30       --  MISSING / NOT_AVAILABLE
+   -> documented rainfall: 1/6 (per-observation source-verification shown above)
+   NOTE: documented amount recorded as-is; NO heavy-rain classification applied.
+
+----------------------------------------------------------------
+C. V5 DATASET COVERAGE AUDIT (ERA5 2015-2023, months [6, 7, 8, 9]):
+   observation  date         coverage
+   OBS-004-N    2024-08-08   OUTSIDE (post-2023)
+   OBS-013      2021-09-01   INSIDE V5 coverage
+   OBS-001      2023-07-06   INSIDE V5 coverage
+   OBS-007      2025-08-16   OUTSIDE (post-2023)
+   OBS-003      2024-07-25   OUTSIDE (post-2023)
+   OBS-002      2024-06-30   OUTSIDE (post-2023)
+   -> inside V5 coverage: 2/6;  outside: 4/6
+   OUTSIDE coverage != no rainfall. For observations outside the V5
+   dataset window the frozen ERA5 catalogue simply cannot test them;
+   this is a coverage limitation, not a rainfall finding.
+
+================================================================
+INTERPRETATION (honest):
+  * 0/6 observations overlap a V5 Top-10 event window (exact; also
+    0/6 at +/-1 day, 0/6 at +/-2 day).
+  * This absence of overlap is consistent with the catalogue-vs-record mismatch:
+    4/6 observations fall OUTSIDE the V5 dataset coverage window, while the
+    2/6 inside the covered months/years do NOT coincide with the selected
+    Top-10 events (the Top-10 are the strongest spells, not all rain-days).
+  * It does NOT establish that the reported waterlogging lacked a rainfall trigger.
+  * Documented observation-day rainfall is sparse (1/6); the single documented
+    amount has pending source verification, so rainfall evidence cannot be
+    established from this record alone.
+  * NET: temporal corroboration is NOT established; the limiting factor is data
+    coverage/precision, not a demonstrated absence of rainfall association.
