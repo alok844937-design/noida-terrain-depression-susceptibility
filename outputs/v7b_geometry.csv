@@ -1,20 +1,20 @@
 instance_id,parent_obs,location_name,lat,lon,spatial_precision_class,uncertainty_radius_m,geometry_method,coordinate_source,coordinate_verification_status,validation_set
-OBS-004-N-01,OBS-004-N,Sector 94 Noida,28.5430,77.3340,named_place,500,manual_approx_centroid,public_sector_location,approx_unverified,PRIMARY
-OBS-004-N-02,OBS-004-N,Sector 96 Noida,28.5480,77.3520,named_place,500,manual_approx_centroid,public_sector_location,approx_unverified,PRIMARY
-OBS-004-N-03,OBS-004-N,Sector 127 Noida,28.5360,77.3760,named_place,500,manual_approx_centroid,public_sector_location,approx_unverified,PRIMARY
-OBS-004-N-04,OBS-004-N,Sector 108 Noida,28.5490,77.3660,named_place,500,manual_approx_centroid,public_sector_location,approx_unverified,PRIMARY
-OBS-004-N-05,OBS-004-N,Sector 60 Noida,28.6060,77.3620,named_place,500,manual_approx_centroid,public_sector_location,approx_unverified,PRIMARY
+OBS-004-N-01,OBS-004-N,Sector 94 Noida,28.5503,77.3238,named_place,500,manual_approx_centroid,public_web_location_crosscheck,web_verified,PRIMARY
+OBS-004-N-02,OBS-004-N,Sector 96 Noida,28.5421,77.3479,named_place,500,manual_approx_centroid,public_web_location_crosscheck,web_verified,PRIMARY
+OBS-004-N-03,OBS-004-N,Sector 127 Noida,28.5341,77.3488,named_place,500,manual_approx_centroid,public_web_location_crosscheck,web_verified,PRIMARY
+OBS-004-N-04,OBS-004-N,Sector 108 Noida,28.5267,77.3766,named_place,500,manual_approx_centroid,public_web_location_crosscheck,web_verified,PRIMARY
+OBS-004-N-05,OBS-004-N,Sector 60 Noida,28.6032,77.3672,named_place,500,manual_approx_centroid,public_web_location_crosscheck,web_verified,PRIMARY
 OBS-004-N-06,OBS-004-N,Model Town Noida,28.5850,77.3300,named_place,500,manual_approx_centroid,public_landmark_location,approx_unverified,PRIMARY
 OBS-004-N-07,OBS-004-N,Rajnigandha Chowk Sector 16 Noida,28.5830,77.3130,named_place,500,manual_approx_centroid,public_landmark_location,approx_unverified,PRIMARY
 OBS-004-N-08,OBS-004-N,Behlolpur Noida,28.6270,77.3960,named_place,500,manual_approx_centroid,public_locality_location,approx_unverified,PRIMARY
 OBS-013-01,OBS-013,Sector 61 Mamura metro underpass Noida,28.6060,77.3650,named_place,500,manual_approx_centroid,public_landmark_location,approx_unverified,PRIMARY
-OBS-013-02,OBS-013,Electronic City metro station Noida,28.6300,77.3740,named_place,500,manual_approx_centroid,public_landmark_location,approx_unverified,PRIMARY
+OBS-013-02,OBS-013,Electronic City metro station Noida,28.6283,77.3750,named_place,500,manual_approx_centroid,public_web_location_crosscheck,web_verified,PRIMARY
 OBS-002-01,OBS-002,Sector 19 Noida,28.5810,77.3170,sector,1000,manual_approx_centroid,public_sector_location,approx_unverified,SENSITIVITY
 OBS-002-02,OBS-002,Sector 62 opposite Fortis Noida,28.6270,77.3640,named_place,500,manual_approx_centroid,public_landmark_location,approx_unverified,SENSITIVITY
 OBS-002-03,OBS-002,Sector 58 Noida,28.6070,77.3580,sector,1000,manual_approx_centroid,public_sector_location,approx_unverified,SENSITIVITY
 OBS-002-04,OBS-002,Sector 59 Noida,28.6090,77.3510,sector,1000,manual_approx_centroid,public_sector_location,approx_unverified,SENSITIVITY
 OBS-002-05,OBS-002,Sector 77 Noida,28.5680,77.3900,sector,1000,manual_approx_centroid,public_sector_location,approx_unverified,SENSITIVITY
-OBS-003-01,OBS-003,Botanical Garden Noida,28.5640,77.3340,named_place,500,manual_approx_centroid,public_landmark_location,approx_unverified,SENSITIVITY
+OBS-003-01,OBS-003,Botanical Garden Noida,28.5624,77.3291,named_place,500,manual_approx_centroid,public_web_location_crosscheck,web_verified,SENSITIVITY
 OBS-003-02,OBS-003,Atta underpass Sector 18 Noida,28.5700,77.3260,named_place,500,manual_approx_centroid,public_landmark_location,approx_unverified,SENSITIVITY
 OBS-003-03,OBS-003,Sector 44 Noida,28.5560,77.3410,sector,1000,manual_approx_centroid,public_sector_location,approx_unverified,SENSITIVITY
 OBS-003-04,OBS-003,Sector 27 Noida,28.5820,77.3230,sector,1000,manual_approx_centroid,public_sector_location,approx_unverified,SENSITIVITY

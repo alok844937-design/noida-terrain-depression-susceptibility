@@ -1,38 +1,55 @@
-NOIDA V7-B — COARSE SPATIAL CORROBORATION (EXPLORATORY, PROVISIONAL)
+NOIDA V7-B — SPATIAL CORROBORATION (parent-level primary; PROVISIONAL)
 ==================================================================
-Observed waterlogging reports vs V4 bucket-2 susceptibility, at
-uncertainty-zone scale. Coordinates are approx_unverified -> PROVISIONAL.
+Primary inferential unit = PARENT OBSERVATION. Instance-level overlap is
+reported as a descriptive diagnostic ONLY (multiple instances belong to the
+same parent, so they are NOT independent observations).
 This does NOT establish that individual susceptible cells flooded.
 
 raster CRS = EPSG:32644, resolution = 29.07 m
 bucket-2 cells = 8026, null-domain cells (full DEM) = 514407
 
-PRIMARY (independently verified parents only):
-  parent observations           : 2 (STATISTICAL UNIT)
-  parent obs corroborated       : 2
-  location instances            : 10 (spatial unit)
-  instances overlapping bucket-2: 7 (70.0%)
+COORDINATE VERIFICATION MIX (from geometry CSV, not hard-coded):
+  web_verified instances     : 7/20 (location cross-checked on public web maps)
+  approx_unverified instances: 13/20
+  NOTE: coordinate verification != physical event ground-truthing. Overall PROVISIONAL.
 
-SENSITIVITY (user-reported parents, source pending):
-  parent observations           : 3
-  parent obs corroborated       : 3
-  location instances            : 10
-  instances overlapping bucket-2: 9 (90.0%)
+------------------------------------------------------------------
+PRIMARY — parent-level (the inferential unit):
+  independently source-verified parent observations : 2  (n)
+  parents with >=1 bucket-2-overlapping instance     : 2/2
+  (descriptive: each verified parent had at least one uncertainty-zone instance
+   intersecting bucket-2; because n=2 this is NOT statistical corroboration)
 
-NULL MODEL (random points in FULL DEM footprint, same radius mix):
-  seed                          : 20260819
-  null samples                  : 10000
-  null instance-overlap rate    : 56.8%
-  observed PRIMARY instance rate: 70.0%
-  difference (obs - null)       : +13.2 pts
-  bootstrap P(null >= observed) : 0.291  [EXPLORATORY, n=10 instances]
+  instance-level DIAGNOSTIC (descriptive only, NOT an independent-sample statistic):
+    5/10 instances overlap bucket-2 (50.0%)
 
-INTERPRETATION
-  Exploratory spatial comparison only. With just 2 verified parent
-  observations, no statistical power is claimed. The null comparison
-  indicates whether observed reports intersect susceptibility more than
-  random locations across Noida would, at coarse uncertainty-zone scale.
+PARENT-MATCHED NULL (random 'parents' with the SAME per-parent radius structure):
+  seed                       : 20260819
+  null replicates            : 10000
+  mean null parent-overlap   : 90.5%
+  observed parent-overlap    : 100% (2/2)
+  P(null >= observed)        : 0.810  [REPORTED, NOT a significance claim]
 
-  "Observed waterlogging reports were spatially corroborated against the
-   V4 susceptibility layer at uncertainty-zone scale; this does not
-   establish that individual susceptible cells flooded."
+------------------------------------------------------------------
+SENSITIVITY (user-reported parents, source pending; supporting only, NOT primary):
+  parents                    : 3
+  parents with >=1 overlap   : 3 (100% descriptive)
+  instance diagnostic        : 9/10 (90.0%)
+
+==================================================================
+INTERPRETATION (honest):
+  * Primary inferential unit is the parent observation, and there are only n=2
+    independently source-verified parents. At n=2 the observed parent statistic can only
+    be 0%, 50% or 100%, so NO statistical significance can be claimed regardless of the
+    null distribution. The P-value above is reported for completeness, not as inference.
+  * Parent-level spatial overlap is DESCRIPTIVE only. With two verified parents the
+    available evidence is insufficient to establish statistical spatial corroboration
+    of the terrain-susceptibility hypothesis.
+  * The instance-level figure (50%) is retained as a
+    descriptive spatial diagnostic but is NOT treated as an independent-sample statistic,
+    because the instances belong to the same parent observations.
+  * This is NOT evidence against the susceptibility hypothesis; it indicates the currently
+    available observations are insufficient to demonstrate positive spatial corroboration.
+
+  "The available observed reports are insufficient to establish spatial corroboration
+   of the V4 susceptibility layer; this neither validates nor refutes it."

@@ -1,21 +1,34 @@
 """
-V7-B — COARSE SPATIAL CORROBORATION (observed waterlogging reports vs V4 susceptibility)
-=======================================================================================
-Observed uncertainty zones vs V4 bucket-2, compared to a null model of random
-points in the FULL Noida DEM footprint (NOT the V4 evidence raster, which only
-covers tier-4 cells and is 74% bucket-2 -> circular).
+V7-B — SPATIAL CORROBORATION (observed waterlogging reports vs V4 susceptibility)
+================================================================================
+Tests whether documented observed-waterlogging uncertainty zones spatially
+intersect V4 bucket-2 (unflagged + low-flow closed depressions), vs a
+parent-matched random null in the full DEM footprint.
 
-HONESTY LOCKS: approx_unverified coords (PROVISIONAL); uncertainty-zone scale, not
-per-cell; TWO units (parent-observation = statistical n=2 primary; instance = spatial);
-PRIMARY=verified only, SENSITIVITY=user-reported; null = 10,000 pts in full DEM mask,
-same radii mix, seed 20260819, EXPLORATORY; all geometry in raster CRS (UTM 44N).
-Wording: "Observed waterlogging reports were spatially corroborated against the V4
-susceptibility layer at uncertainty-zone scale; this does not establish that individual
-susceptible cells flooded."
+DESIGN LOCKS:
+  * PRIMARY INFERENTIAL UNIT = PARENT OBSERVATION (n=2 verified). A parent
+    overlaps iff >=1 of its instances intersects bucket-2. Instance-level
+    overlap is a DESCRIPTIVE diagnostic only — instances of one parent are
+    NOT independent observations, so they must not inflate n.
+  * PARENT-MATCHED NULL: each null replicate builds one random "parent" per
+    real parent, with the SAME per-parent instance count and radii, drawn from
+    the full DEM footprint; parent overlaps iff >=1 instance hits bucket-2.
+  * At n=2 the observed parent statistic can only be 0/50/100% -> NO statistical
+    significance is claimed; the P-value is reported for completeness only.
+  * Coordinate verification status is read from the CSV (mixed web_verified /
+    approx_unverified), never hard-coded. Coordinate verification is NOT physical
+    event ground-truthing. Result stays PROVISIONAL.
+  * All geometry in raster CRS (UTM 44N); points transformed in, buffers in metres.
+  * No tuning: radius, bucket-2, seed (20260819) all fixed.
+
+Verdict wording:
+  "The available observed reports are insufficient to establish spatial
+   corroboration of the V4 susceptibility layer; this neither validates nor
+   refutes it."
 """
 import csv, json, numpy as np, rasterio
 from pyproj import Transformer
-from collections import defaultdict
+from collections import defaultdict, Counter
 
 EVIDENCE_TIF = "outputs/flow_crosscheck_evidence.tif"  # V4: ==2 is bucket-2
 DEM_TIF      = "data/noida_dem_utm.tif"                 # full analysis footprint (null domain)
@@ -85,6 +98,7 @@ def main():
         r["_hit"] = buffer_hits_bucket2(x, y, r["_rad"], bucket2, transform, res)
 
     def summarize(subset, label):
+        """Parent-level primary + instance-level descriptive."""
         n_inst = len(subset)
         hit_inst = sum(r["_hit"] for r in subset)
         by_parent = defaultdict(list)
@@ -92,115 +106,156 @@ def main():
             by_parent[r["parent_obs"]].append(r["_hit"])
         n_par = len(by_parent)
         hit_par = sum(any(v) for v in by_parent.values())
+        structure = {p: [float(r["_rad"]) for r in subset if r["parent_obs"] == p]
+                     for p in by_parent}
         return {
             "label": label,
             "instances_total": n_inst,
             "instances_overlapping": hit_inst,
             "instance_overlap_rate": round(hit_inst / n_inst, 4) if n_inst else None,
             "parent_observations_total": n_par,
-            "parent_observations_corroborated": hit_par,
+            "parent_observations_overlapping": hit_par,
+            "parent_overlap_rate": round(hit_par / n_par, 4) if n_par else None,
+            "_structure": structure,
         }
 
     primary = [r for r in rows if r["validation_set"] == "PRIMARY"]
     sensitivity = [r for r in rows if r["validation_set"] == "SENSITIVITY"]
-    s_primary = summarize(primary, "PRIMARY (verified parents only)")
-    s_sens = summarize(sensitivity, "SENSITIVITY (user-reported parents)")
+    s_primary = summarize(primary, "PRIMARY (independently source-verified parents)")
+    s_sens = summarize(sensitivity, "SENSITIVITY (user-reported parents, source pending)")
+
+    cv = Counter(r["coordinate_verification_status"] for r in rows)
+    web_v = cv.get("web_verified", 0)
+    approx_v = cv.get("approx_unverified", 0)
 
     rng = np.random.default_rng(SEED)
     valid_rows, valid_cols = np.where(null_domain)
     n_valid = len(valid_rows)
-    primary_radii = np.array([r["_rad"] for r in primary])
 
-    def null_rate_for_radii(radii, n_samples):
-        idx = rng.integers(0, n_valid, size=n_samples)
-        rr = valid_rows[idx]; cc = valid_cols[idx]
-        px = transform.c + (cc + 0.5) * transform.a
-        py = transform.f + (rr + 0.5) * transform.e
-        rad = rng.choice(radii, size=n_samples, replace=True)
-        hits = 0
-        for i in range(n_samples):
-            if buffer_hits_bucket2(px[i], py[i], rad[i], bucket2, transform, res):
-                hits += 1
-        return hits / n_samples
+    structure = s_primary["_structure"]
+    n_parents = len(structure)
 
-    null_primary = null_rate_for_radii(primary_radii, N_NULL)
-    obs_primary_rate = s_primary["instance_overlap_rate"]
-    B = 2000
-    boot = np.empty(B)
-    for b in range(B):
-        idx = rng.integers(0, n_valid, size=len(primary))
-        rr = valid_rows[idx]; cc = valid_cols[idx]
-        px = transform.c + (cc + 0.5) * transform.a
-        py = transform.f + (rr + 0.5) * transform.e
-        rad = rng.choice(primary_radii, size=len(primary), replace=True)
-        h = sum(buffer_hits_bucket2(px[i], py[i], rad[i], bucket2, transform, res)
-                for i in range(len(primary)))
-        boot[b] = h / len(primary)
-    p_ge = float((boot >= obs_primary_rate).mean())
+    def one_null_replicate():
+        overlapping = 0
+        for parent, radii in structure.items():
+            k = len(radii)
+            idx = rng.integers(0, n_valid, size=k)
+            rr = valid_rows[idx]; cc = valid_cols[idx]
+            px = transform.c + (cc + 0.5) * transform.a
+            py = transform.f + (rr + 0.5) * transform.e
+            hit = False
+            for i in range(k):
+                if buffer_hits_bucket2(px[i], py[i], radii[i], bucket2, transform, res):
+                    hit = True
+                    break
+            overlapping += 1 if hit else 0
+        return overlapping
+
+    null_counts = np.array([one_null_replicate() for _ in range(N_NULL)])
+    obs_parent_overlap = s_primary["parent_observations_overlapping"]
+    null_parent_rate = float(null_counts.mean() / n_parents)
+    p_ge = float((null_counts >= obs_parent_overlap).mean())
 
     L = [
-        "NOIDA V7-B — COARSE SPATIAL CORROBORATION (EXPLORATORY, PROVISIONAL)",
+        "NOIDA V7-B — SPATIAL CORROBORATION (parent-level primary; PROVISIONAL)",
         "=" * 66,
-        "Observed waterlogging reports vs V4 bucket-2 susceptibility, at",
-        "uncertainty-zone scale. Coordinates are approx_unverified -> PROVISIONAL.",
+        "Primary inferential unit = PARENT OBSERVATION. Instance-level overlap is",
+        "reported as a descriptive diagnostic ONLY (multiple instances belong to the",
+        "same parent, so they are NOT independent observations).",
         "This does NOT establish that individual susceptible cells flooded.",
         "",
         f"raster CRS = {crs}, resolution = {res:.2f} m",
         f"bucket-2 cells = {int(bucket2.sum())}, null-domain cells (full DEM) = {int(null_domain.sum())}",
         "",
-        "PRIMARY (independently verified parents only):",
-        f"  parent observations           : {s_primary['parent_observations_total']} (STATISTICAL UNIT)",
-        f"  parent obs corroborated       : {s_primary['parent_observations_corroborated']}",
-        f"  location instances            : {s_primary['instances_total']} (spatial unit)",
-        f"  instances overlapping bucket-2: {s_primary['instances_overlapping']} "
+        "COORDINATE VERIFICATION MIX (from geometry CSV, not hard-coded):",
+        f"  web_verified instances     : {web_v}/20 (location cross-checked on public web maps)",
+        f"  approx_unverified instances: {approx_v}/20",
+        "  NOTE: coordinate verification != physical event ground-truthing. Overall PROVISIONAL.",
+        "",
+        "-" * 66,
+        "PRIMARY — parent-level (the inferential unit):",
+        f"  independently source-verified parent observations : {s_primary['parent_observations_total']}  (n)",
+        f"  parents with >=1 bucket-2-overlapping instance     : "
+        f"{s_primary['parent_observations_overlapping']}/{s_primary['parent_observations_total']}",
+        "  (descriptive: each verified parent had at least one uncertainty-zone instance",
+        "   intersecting bucket-2; because n=2 this is NOT statistical corroboration)",
+        "",
+        "  instance-level DIAGNOSTIC (descriptive only, NOT an independent-sample statistic):",
+        f"    {s_primary['instances_overlapping']}/{s_primary['instances_total']} instances overlap bucket-2 "
         f"({s_primary['instance_overlap_rate']*100:.1f}%)",
         "",
-        "SENSITIVITY (user-reported parents, source pending):",
-        f"  parent observations           : {s_sens['parent_observations_total']}",
-        f"  parent obs corroborated       : {s_sens['parent_observations_corroborated']}",
-        f"  location instances            : {s_sens['instances_total']}",
-        f"  instances overlapping bucket-2: {s_sens['instances_overlapping']} "
+        "PARENT-MATCHED NULL (random 'parents' with the SAME per-parent radius structure):",
+        f"  seed                       : {SEED}",
+        f"  null replicates            : {N_NULL}",
+        f"  mean null parent-overlap   : {null_parent_rate*100:.1f}%",
+        f"  observed parent-overlap    : {s_primary['parent_overlap_rate']*100:.0f}% "
+        f"({obs_parent_overlap}/{n_parents})",
+        f"  P(null >= observed)        : {p_ge:.3f}  [REPORTED, NOT a significance claim]",
+        "",
+        "-" * 66,
+        "SENSITIVITY (user-reported parents, source pending; supporting only, NOT primary):",
+        f"  parents                    : {s_sens['parent_observations_total']}",
+        f"  parents with >=1 overlap   : {s_sens['parent_observations_overlapping']} "
+        f"({s_sens['parent_overlap_rate']*100:.0f}% descriptive)",
+        f"  instance diagnostic        : {s_sens['instances_overlapping']}/{s_sens['instances_total']} "
         f"({s_sens['instance_overlap_rate']*100:.1f}%)",
         "",
-        "NULL MODEL (random points in FULL DEM footprint, same radius mix):",
-        f"  seed                          : {SEED}",
-        f"  null samples                  : {N_NULL}",
-        f"  null instance-overlap rate    : {null_primary*100:.1f}%",
-        f"  observed PRIMARY instance rate: {obs_primary_rate*100:.1f}%",
-        f"  difference (obs - null)       : {(obs_primary_rate-null_primary)*100:+.1f} pts",
-        f"  bootstrap P(null >= observed) : {p_ge:.3f}  [EXPLORATORY, n={len(primary)} instances]",
+        "=" * 66,
+        "INTERPRETATION (honest):",
+        f"  * Primary inferential unit is the parent observation, and there are only n="
+        f"{s_primary['parent_observations_total']}",
+        "    independently source-verified parents. At n=2 the observed parent statistic can only",
+        "    be 0%, 50% or 100%, so NO statistical significance can be claimed regardless of the",
+        "    null distribution. The P-value above is reported for completeness, not as inference.",
+        "  * Parent-level spatial overlap is DESCRIPTIVE only. With two verified parents the",
+        "    available evidence is insufficient to establish statistical spatial corroboration",
+        "    of the terrain-susceptibility hypothesis.",
+        f"  * The instance-level figure ({s_primary['instance_overlap_rate']*100:.0f}%) is retained as a",
+        "    descriptive spatial diagnostic but is NOT treated as an independent-sample statistic,",
+        "    because the instances belong to the same parent observations.",
+        "  * This is NOT evidence against the susceptibility hypothesis; it indicates the currently",
+        "    available observations are insufficient to demonstrate positive spatial corroboration.",
         "",
-        "INTERPRETATION",
-        "  Exploratory spatial comparison only. With just 2 verified parent",
-        "  observations, no statistical power is claimed. The null comparison",
-        "  indicates whether observed reports intersect susceptibility more than",
-        "  random locations across Noida would, at coarse uncertainty-zone scale.",
-        "",
-        "  \"Observed waterlogging reports were spatially corroborated against the",
-        "   V4 susceptibility layer at uncertainty-zone scale; this does not",
-        "   establish that individual susceptible cells flooded.\"",
+        "  \"The available observed reports are insufficient to establish spatial corroboration",
+        "   of the V4 susceptibility layer; this neither validates nor refutes it.\"",
     ]
     out = "\n".join(L) + "\n"
     with open("outputs/v7b_corroboration_report.txt", "w") as f:
         f.write(out)
     js = {
         "provisional": True,
-        "coordinates": "approx_unverified",
-        "null_domain": "full_dem_footprint",
-        "primary": s_primary,
-        "sensitivity": s_sens,
-        "null_model": {
-            "seed": SEED, "n_null": N_NULL,
-            "null_instance_overlap_rate": null_primary,
-            "observed_primary_instance_rate": obs_primary_rate,
-            "difference_pts": obs_primary_rate - null_primary,
-            "bootstrap_p_null_ge_observed": p_ge,
-            "bootstrap_B": B,
-            "exploratory": True,
+        "primary_inferential_unit": "parent_observation",
+        "coordinate_verification": {
+            "web_verified_instances": web_v,
+            "approx_unverified_instances": approx_v,
+            "all_in_bbox": True,
+            "note": "coordinate verification != physical event ground-truthing",
         },
-        "wording": ("Observed waterlogging reports were spatially corroborated "
-                    "against the V4 susceptibility layer at uncertainty-zone scale; "
-                    "this does not establish that individual susceptible cells flooded."),
+        "primary": {
+            "parent_observations_n": s_primary["parent_observations_total"],
+            "parents_with_overlap": s_primary["parent_observations_overlapping"],
+            "parent_overlap_rate": s_primary["parent_overlap_rate"],
+            "instance_overlap_rate_descriptive_only": s_primary["instance_overlap_rate"],
+            "instances_overlapping": s_primary["instances_overlapping"],
+            "instances_total": s_primary["instances_total"],
+        },
+        "parent_matched_null": {
+            "seed": SEED, "n_null": N_NULL,
+            "mean_null_parent_overlap_rate": null_parent_rate,
+            "observed_parent_overlap_rate": s_primary["parent_overlap_rate"],
+            "p_null_ge_observed": p_ge,
+            "note": "n=2 parents: statistic can only be 0/50/100%; p reported, NOT a significance claim",
+        },
+        "sensitivity": {
+            "parent_observations_n": s_sens["parent_observations_total"],
+            "parents_with_overlap": s_sens["parent_observations_overlapping"],
+            "parent_overlap_rate": s_sens["parent_overlap_rate"],
+            "instance_overlap_rate_descriptive_only": s_sens["instance_overlap_rate"],
+            "note": "user-reported parents, source pending; supporting only, not primary inference",
+        },
+        "verdict": ("Available observed reports are insufficient to establish spatial "
+                    "corroboration of the V4 susceptibility layer; this neither validates "
+                    "nor refutes it."),
     }
     with open("outputs/v7b_corroboration_report.json", "w") as f:
         json.dump(js, f, indent=2)

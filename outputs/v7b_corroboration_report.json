@@ -1,32 +1,34 @@
 {
   "provisional": true,
-  "coordinates": "approx_unverified",
-  "null_domain": "full_dem_footprint",
+  "primary_inferential_unit": "parent_observation",
+  "coordinate_verification": {
+    "web_verified_instances": 7,
+    "approx_unverified_instances": 13,
+    "all_in_bbox": true,
+    "note": "coordinate verification != physical event ground-truthing"
+  },
   "primary": {
-    "label": "PRIMARY (verified parents only)",
-    "instances_total": 10,
-    "instances_overlapping": 7,
-    "instance_overlap_rate": 0.7,
-    "parent_observations_total": 2,
-    "parent_observations_corroborated": 2
+    "parent_observations_n": 2,
+    "parents_with_overlap": 2,
+    "parent_overlap_rate": 1.0,
+    "instance_overlap_rate_descriptive_only": 0.5,
+    "instances_overlapping": 5,
+    "instances_total": 10
   },
-  "sensitivity": {
-    "label": "SENSITIVITY (user-reported parents)",
-    "instances_total": 10,
-    "instances_overlapping": 9,
-    "instance_overlap_rate": 0.9,
-    "parent_observations_total": 3,
-    "parent_observations_corroborated": 3
-  },
-  "null_model": {
+  "parent_matched_null": {
     "seed": 20260819,
     "n_null": 10000,
-    "null_instance_overlap_rate": 0.5675,
-    "observed_primary_instance_rate": 0.7,
-    "difference_pts": 0.13249999999999995,
-    "bootstrap_p_null_ge_observed": 0.291,
-    "bootstrap_B": 2000,
-    "exploratory": true
+    "mean_null_parent_overlap_rate": 0.90485,
+    "observed_parent_overlap_rate": 1.0,
+    "p_null_ge_observed": 0.8099,
+    "note": "n=2 parents: statistic can only be 0/50/100%; p reported, NOT a significance claim"
   },
-  "wording": "Observed waterlogging reports were spatially corroborated against the V4 susceptibility layer at uncertainty-zone scale; this does not establish that individual susceptible cells flooded."
+  "sensitivity": {
+    "parent_observations_n": 3,
+    "parents_with_overlap": 3,
+    "parent_overlap_rate": 1.0,
+    "instance_overlap_rate_descriptive_only": 0.9,
+    "note": "user-reported parents, source pending; supporting only, not primary inference"
+  },
+  "verdict": "Available observed reports are insufficient to establish spatial corroboration of the V4 susceptibility layer; this neither validates nor refutes it."
 }
