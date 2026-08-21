@@ -84,22 +84,31 @@ mean development-critical land OR naturally-draining farmland; the data cannot d
   re-verified, NOT the physical flood location ground-truthed. No public point-level
   complaint database exists; sector precision is
   coarser than the 30 m grid. Terminology held: "observed reports," never "ground truth."
-- **V7-B (coarse spatial corroboration):** using uncertainty zones (500–1000 m), observed
-  locations overlap bucket-2 at **70%** (primary), vs a null model of random Noida points at
-  **56.8%** → difference **+13.2 pts**, bootstrap **p = 0.291** (exploratory, n = 2 verified
-  parents). Direction = positive relative to the null; magnitude = not statistically
-  decisive. Coordinates are approx_unverified → **PROVISIONAL**.
+- **V7-B (coarse spatial corroboration):** primary inferential unit = the parent
+  observation (n = 2 independently source-verified parents). Both verified parents have
+  ≥1 uncertainty-zone instance intersecting bucket-2 (2/2, descriptive only). But a
+  **parent-matched null** (random parents with the same per-parent instance-count and
+  radii) already overlaps bucket-2 **90.5%** of the time, and P(null ≥ observed) = 0.810 —
+  so the observed 2/2 does not provide sufficient evidence for corroboration at this
+  permissive uncertainty-zone scale. At n = 2 the observed statistic can only be 0/50/100%,
+  so no statistical inference is claimed. (Instance-level overlap 5/10 = 50% is a descriptive
+  diagnostic only — the 10 instances are subdivisions of just 2 parents, not independent
+  observations.) Across the 20 geometry instances, coordinates are mixed (7 web_verified /
+  13 approx_unverified) → **PROVISIONAL**.
 - **V7-D (temporal):** **0/6** observations overlap a V5 Top-10 event window (exact, ±1 d,
   ±2 d). But 4/6 observations fall OUTSIDE the V5 2015–2023 Jun–Sep coverage, and the 2
   inside simply don't coincide with the *strongest-10* spells. Only 1/6 has a documented
   rainfall amount (26.5 mm, itself pending re-verification).
 
-**What the observed layer supports:** a weak, directionally-consistent spatial signal —
-reported waterlogging locations tend to fall near terrain-susceptible zones slightly more
-than chance, but not enough to establish predictive validity.
+**What the observed layer supports:** nothing at the level of statistical corroboration —
+the available verified sample (n = 2 parents) is simply too small, and the parent-matched
+null is already high (90.5%), so the observed overlap is not sufficient to establish
+corroboration and no statistical inference is claimed. This neither validates nor refutes
+the susceptibility layer.
 **What it does NOT support:** cell-level validation, statistical significance, or temporal
-corroboration. Crucially, **"no V5 temporal overlap" is NOT evidence against a rainfall
-trigger** — it reflects a catalogue-vs-record coverage mismatch.
+corroboration. Crucially, both **"no positive corroboration"** (small sample, permissive
+null) and **"no V5 temporal overlap"** (catalogue-vs-record coverage mismatch) are
+statements about *data insufficiency*, NOT evidence against the hypothesis.
 
 ---
 
@@ -115,16 +124,19 @@ trigger** — it reflects a catalogue-vs-record coverage mismatch.
 2. **A reproducible, honestly-caveated multi-layer pipeline** (terrain → rainfall → urban →
    observed), every stage frozen, audited, and consistency-checked (V6 audit: all layers
    bit-identical on the shared grid).
-3. **A weak, directionally-consistent spatial signal** from the available observed
-   reports (70% vs 56.8% null) — but insufficient evidence to establish predictive
-   validity (p = 0.291, n = 2 verified parent observations, approximate coordinates).
+3. **An honest observed-corroboration test that returns "insufficient."** With only 2
+   verified parent observations and a parent-matched null that already overlaps 90.5% of
+   the time, the available reports cannot establish spatial corroboration (neither validate
+   nor refute) — the test correctly reports the limit of the evidence rather than
+   manufacturing a signal.
 
 ### What is NOT supported
 
 1. **No confirmed waterlogging at any specific cell.** The map identifies *candidates*, never
    confirmed floods.
-2. **No statistically significant validation** (p = 0.291, n = 2 verified observations,
-   coarse uncertainty zones).
+2. **No statistically significant validation** (n = 2 verified parent observations; the
+   parent-matched null is already 90.5%, so the observed overlap is not sufficient for
+   corroboration and no inference is claimed; coarse uncertainty zones).
 3. **No temporal corroboration** with the rainfall catalogue — and, symmetrically, **no
    temporal contradiction** either.
 4. **No causal claims** about drainage, built-up land, or rainfall driving waterlogging.
@@ -141,23 +153,27 @@ trigger** — it reflects a catalogue-vs-record coverage mismatch.
   30 m susceptibility grid; ERA5 rainfall at ~25 km.
 - **OSM drainage network is likely incomplete** (379 mapped drains), so drainage-proximity
   cannot be read as real drainage availability.
-- **Observation coordinates are approx_unverified**, so V7-B is provisional.
+- **Observation coordinates are mixed** (7 web_verified via public-web cross-check, 13
+  approx_unverified; web-verification ≠ event ground-truthing), so V7-B stays provisional.
 
 ### Final scientific claim — exactly how strong
 
 > **"Using open DEM, reanalysis rainfall, and OpenStreetMap data, this project produces a
 > reproducible, internally-coherent map of where Noida's terrain is susceptible to water
-> collection. The available observed-waterlogging reports show a weak directional spatial
-> consistency with this map at a coarse, uncertainty-zone scale, but the available data are
-> insufficient to validate it at the level of individual cells or to establish a
-> rainfall-timing link. The susceptibility map is therefore best described as a well-founded,
-> not-yet-validated hypothesis; the principal current validation gap is the absence of
-> public, spatially-precise observed-waterlogging data — itself a documented gap."**
+> collection. A coarse observed-corroboration test against the available waterlogging
+> reports returns *insufficient* — with only two verified parent observations the available
+> overlap is not enough to establish corroboration (the parent-matched null is already high
+> at 90.5%, and no statistical inference is claimed), neither validating nor refuting the
+> map — and the available data are also insufficient to validate it at the level of
+> individual cells or to establish a rainfall-timing link. The susceptibility map is
+> therefore best described as a well-founded, not-yet-validated hypothesis; the principal
+> current validation gap is the absence of public, spatially-precise observed-waterlogging
+> data — itself a documented gap."**
 
-This is a **terrain-susceptibility screening layer with partial, directional observational
-corroboration and an explicitly documented validation-data gap** — NOT a validated
-flood-prediction model. Stated that way, every clause is backed by a committed artifact, and
-nothing is overclaimed.
+This is a **terrain-susceptibility screening layer whose observed-corroboration test is
+honestly reported as insufficient, with an explicitly documented validation-data gap** —
+NOT a validated flood-prediction model. Stated that way, every clause is backed by a
+committed artifact, and nothing is overclaimed.
 
 ### Where ML would (and would not) fit
 
