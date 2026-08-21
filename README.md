@@ -9,11 +9,11 @@
   <img alt="dem" src="https://img.shields.io/badge/DEM-Copernicus%20GLO--30-informational">
   <img alt="python" src="https://img.shields.io/badge/Python-3.x-3776ab">
   <img alt="license" src="https://img.shields.io/badge/data-open%20sources-orange">
-</p>  > [!IMPORTANT]
-This project does NOT predict waterlogging. It produces a terrain-depression
-susceptibility map and then tests it, honestly, against rainfall, urban context, and
-observed reports. The final result is a well-founded, not-yet-validated hypothesis —
-and the project documents exactly where the evidence stops.
+</p>  [IMPORTANT]</br>
+**This project does NOT predict waterlogging.** It produces a terrain-depression
+*susceptibility* map and then tests it, honestly, against rainfall, urban context, and
+observed reports. The final result is a **well-founded, not-yet-validated hypothesis** —
+and the project documents **exactly** where the evidence stops.
 
 
 
@@ -50,131 +50,131 @@ See outputs/v7ef_final_synthesis.md for the full verdict.
 
 🧭 Pipeline at a glance
 
-Stage	Focus	Status	Key output
+|Stage | Focus | Status	| Key output
 
-V1	DEM → hydrology → TWI + depression depth	✅	depression_depth_utm.tif
-V2.1.1	Tiered terrain-depression candidates	❄️ frozen	candidate_depressions.tif
-V3	Spatial / DEM-artifact-suspect diagnostics	✅	artifact_suspect_report.txt
-V4	Depression × flow-accumulation cross-check	✅	flow_crosscheck_report.txt
-V5	Rainfall integration (event-conditioned, ERA5)	✅	fusion_v5_report.txt
-V6	Urban context (OSM buildings, roads, drainage)	✅	urban_context_v6a_report.txt, drainage_proximity_v6b_report.txt
-V7	Validation vs observed reports + data-sufficiency verdict	✅	v7ef_final_synthesis.md
+| **V1** |	DEM → hydrology → TWI + depression depth | ✅	`depression_depth_utm.tif` |</br>
+| **V2.1.1** |	Tiered terrain-depression candidates	| ❄️ `frozen	candidate_depressions.tif` |</br>
+| **V3** |	Spatial / DEM-artifact-suspect diagnostics	| ✅	`artifact_suspect_report.txt` |</br>
+| **V4** |	Depression × flow-accumulation cross-check	| ✅	`flow_crosscheck_report.txt` |</br>
+| **V5** |	Rainfall integration (event-conditioned, ERA5)	| ✅	`fusion_v5_report.txt` |</br>
+| **V6** |	Urban context (OSM buildings, roads, drainage)	| ✅	`urban_context_v6a_report.txt`, `drainage_proximity_v6b_report.txt` |</br>
+| **V7** |	Validation vs observed reports + data-sufficiency verdict	| ✅	`v7ef_final_synthesis.md` |</br>
 
 
-❄️ frozen = specification locked; not modified by later stages. Every stage keeps V2.1.1 and
-its predecessors untouched.
+**❄️ frozen = specification locked; not modified by later stages. Every stage keeps V2.1.1 and
+its predecessors untouched.**
 
 
 ---
 
-🔬 The four evidence layers & what each established
+## 🔬 The four evidence layers & what each established
 
-1. Terrain (V1–V4) — the strongest layer
+### 1. Terrain (V1–V4) — the strongest layer
 
-Copernicus GLO-30 DEM (~30 m), analysed in UTM 44N. Deepest tier (>3 m) = 10,796 candidate cells.
+- Copernicus GLO-30 DEM (~30 m), analysed in UTM 44N. Deepest tier (>3 m) = 10,796 candidate cells.
 
-V3 flagged only 12.7% as DEM-artifact-suspect (87.3% unflagged).
+- V3 flagged only 12.7% as DEM-artifact-suspect (87.3% unflagged).
 
-V4 cross-checked depression depth against D8 flow accumulation. Most deep cells (57.5%)
+- V4 cross-checked depression depth against D8 flow accumulation. Most deep cells (57.5%)
 sit in the lowest flow band — consistent with genuine closed depressions (which pond
 rather than drain). The two diagnostics are complementary, not statistically independent
 (both from the same DEM).
 
-Bucket-2 = 8,026 cells (6.783 km²) = unflagged + low-flow → the most plausible closed
+- **Bucket-2 = 8,026 cells (6.783 km²)** = unflagged + low-flow → the most plausible closed
 depressions, and the focus of every later layer.
 
 
-2. Rainfall (V5) — coarse forcing, honest negative finding
+### 2. Rainfall (V5) — coarse forcing, honest negative finding
 
-Open-Meteo ERA5 reanalysis (~25 km, hourly), 2015–2023 Jun–Sep, audited clean.
+- Open-Meteo **ERA5** reanalysis (~25 km, hourly), 2015–2023 Jun–Sep, audited clean.
 
-A frozen event-selection rule (no post-hoc tuning) picked a Top-10 event catalogue.
+- A frozen event-selection rule (no post-hoc tuning) picked a **Top-10 event catalogue**.
 
-Key finding — anti-co-location: the largest terrain-susceptible zone (SW, 4.29 km²,
-63% of bucket-2) is NOT where the strongest coarse rainfall landed. Terrain-susceptibility
-and strongest coarse forcing are mildly anti-correlated in space. (Coarse ~25 km scale;
+- **Key finding — anti-co-location:** the largest terrain-susceptible zone (SW, 4.29 km²,
+63% of bucket-2) is **NOT** where the strongest coarse rainfall landed. Terrain-susceptibility
+and strongest coarse forcing are **mildly anti-correlated** in space. (Coarse ~25 km scale;
 not a 30 m attribution.)
 
 
-3. Urban context (V6) — spatial characterisation only
+### 3. Urban context (V6) — spatial characterisation only
 
-Built: susceptible depressions are mostly non-built-up (bucket-2 mean building
+- **Built:** susceptible depressions are **mostly non-built-up** (bucket-2 mean building
 coverage 6.7%, only 17.9% of area has any building; SW zone even less at 14.4%).
 
-Drainage: susceptible depressions are generally far from OSM-mapped drainage
-(median 767 m; 84.7% >250 m). Caveat: this reflects OSM mapped-network sparsity
-(379 mapped drains, likely incomplete), NOT demonstrated drainage absence on the ground.
+- **Drainage:** susceptible depressions are generally **far from OSM-mapped drainage**
+(median 767 m; 84.7% >250 m). **Caveat:** this reflects OSM mapped-network **sparsity**
+(379 mapped drains, likely incomplete), **NOT** demonstrated drainage absence on the ground.
 
 
-4. Observed corroboration (V7) — honestly reports "insufficient"
+### 4. Observed corroboration (V7) — honestly reports "insufficient"
 
-V7-A: 8 reports → 6 usable, only 2 with independent source verification
+- **V7-A:** 8 reports → **6 usable**, only **2 with independent source verification**
 (source re-verified, not the physical flood location ground-truthed). No public point-level
 dataset was found; reports are sector/landmark scale, coarser than the 30 m grid.
 
-V7-B: primary unit = parent observation (n = 2 verified). Both verified parents have
+- **V7-B:** primary unit = parent observation (**n = 2** verified). Both verified parents have
 ≥1 uncertainty-zone instance touching a susceptible cell (2/2, descriptive) — but a
-parent-matched null already does so 90.5% of the time (P(null ≥ observed) = 0.810),
+**parent-matched null** already does so **90.5%** of the time (P(null ≥ observed) = 0.810),
 so the observed overlap does not provide sufficient evidence for corroboration — and at
 n = 2 no statistical inference is claimed. Instance-level 5/10 = 50% is a descriptive
 diagnostic only (instances are subdivisions of the same 2 parents). Across the 20 geometry
 instances, coordinates are mixed (7 web-verified / 13 approximate) → V7-B remains
-provisional. Verdict: insufficient to establish corroboration; neither validates nor refutes.
+provisional. **Verdict: insufficient to establish corroboration; neither validates nor refutes**.
 
-V7-D: 0/6 observations fall in a V5 Top-10 rainfall window — but 4/6 are outside the
-ERA5 coverage period, so "no temporal overlap" is not evidence against a rainfall trigger.
-
-
-
----
-
-✅ What is supported / ❌ what is not
-
-✅ Supported	❌ Not supported
-
-A geometrically coherent terrain-susceptibility map with consistent hydrological context	Confirmed waterlogging at any specific cell
-A reproducible, audited, frozen multi-layer pipeline	Statistically significant validation (n = 2; parent-matched null already 90.5%)
-An observed-corroboration test that honestly returns "insufficient"	Temporal corroboration with rainfall (nor contradiction)
-Explicitly documented data gaps	Any causal claim (drainage / built-up / rainfall driving floods)
+- **V7-D:** **0/6** observations fall in a V5 Top-10 rainfall window — but 4/6 are outside the
+ERA5 coverage period, so *"no temporal overlap" is **not** evidence against a rainfall trigger*.
 
 
 
 ---
 
-🧱 Candidate tiers (V2.1.1)
+## ✅ What is supported / ❌ what is not
 
-Depth band	Tier	Meaning
+| ✅ Supported	| ❌ Not supported |</br>
 
-< 0.2 m	Background	below candidate threshold
-0.2 – 0.5 m	Minor candidate	shallow terrain-depression signal
-0.5 – 2.0 m	High candidate	stronger terrain-depression signal
-2.0 – 3.0 m	Deep transition	deeper terrain-depression signal
-> 3.0 m	Deep terrain-depression	deep terrain feature (not assumed to be a channel)
+| A geometrically coherent terrain-susceptibility map with consistent hydrological context	| Confirmed waterlogging at any specific cell |</br>
+| A reproducible, audited, frozen multi-layer pipeline | Statistically significant validation (n = 2; parent-matched null already 90.5%) |</br>
+| An observed-corroboration test that honestly returns "insufficient"	Temporal corroboration with rainfall (nor contradiction) |</br>
+| Explicitly documented data gaps	| Any causal claim (drainage / built-up / rainfall driving floods) |</br>
 
 
-"High candidate" = a depression-depth tier only. It does not mean high probability of
-observed waterlogging.
 
-V2.1.1 tier counts (514,407 valid cells, ≥0.2 m threshold): Minor 35,751 (30.21 km²) ·
+---
+
+## 🧱 Candidate tiers (V2.1.1)
+
+| Depth band	| Tier	| Meaning |
+
+| < 0.2 m |	| Background |	| below candidate threshold |</br>
+| 0.2 – 0.5 m | 	| Minor candidate	| shallow terrain-depression signal |</br>
+| 0.5 – 2.0 m	| High candidate	| stronger terrain-depression signal |</br>
+| 2.0 – 3.0 m	| Deep transition	| deeper terrain-depression signal |</br>
+| > 3.0 m	| Deep terrain-depression	deep terrain feature (not assumed to be a channel)</br>
+
+
+*"High candidate" = a depression-depth tier only. It does **not** mean high probability of
+observed waterlogging.*
+
+**V2.1.1 tier counts** (514,407 valid cells, ≥0.2 m threshold): Minor 35,751 (30.21 km²) ·
 High 82,147 (69.43 km²) · Deep transition 15,332 (12.96 km²) · Deep >3 m 10,796 (9.12 km²).
 
 
 ---
 
-🛰️ Method & spatial referencing
+## 🛰️ Method & spatial referencing
 
-Single analysis CRS = UTM 44N. All hydrology/terrain steps run in the projected metric
+- **Single analysis CRS = UTM 44N.** All hydrology/terrain steps run in the projected metric
 CRS; the tiering step hard-fails if its input isn't EPSG:32644.
 
-WGS84 only for display. Only the visualization layer is reprojected to EPSG:4326.
+- **WGS84 only for display.** Only the visualization layer is reprojected to EPSG:4326.
 
-Explicit NoData. −9999 (GDAL/QGIS-safe) with a validity mask excluding non-finite,
+- **Explicit NoData.** −9999 (GDAL/QGIS-safe) with a validity mask excluding non-finite,
 NoData, and physically-impossible negative depths.
 
-Audit-first discipline. Every stage has a dedicated audit/consistency script; the V6
+- **Audit-first discipline.** Every stage has a dedicated audit/consistency script; the V6
 consistency audit confirms all layers are bit-identical on the shared grid.
 
-No fabricated data. Missing rainfall/drainage/observed values stay missing.
+- **No fabricated data.** Missing rainfall/drainage/observed values stay missing.
 
 
 
@@ -239,33 +239,37 @@ python3 src/audit_osm.py && python3 src/urban_context_v6a.py && python3 src/drai
 python3 src/observed_provenance_audit_v7a.py && python3 src/v7b_coarse_corroboration.py && python3 src/v7d_temporal_match.py
 ```
 
-Note: V5 rainfall and V6 OSM steps require network access (Open-Meteo / Overpass APIs).
-⚠️ Scientific limitations
-Terrain depression is a susceptibility indicator, not evidence of observed waterlogging.
-At ~30 m resolution, street-level detail is not captured — results are city-level.
-ERA5 rainfall is ~25 km coarse — it establishes temporal forcing plausibility, not
+Note: V5 rainfall and V6 OSM steps require network access (Open-Meteo / Overpass APIs).</br>
+
+**⚠️ Scientific limitations**
+- Terrain depression is a **susceptibility indicator**, not evidence of observed waterlogging.
+- At ~30 m resolution, street-level detail is not captured — results are **city-level**.
+- ERA5 rainfall is **~25 km** coarse — it establishes temporal forcing plausibility, not
 per-depression attribution.
-OSM drainage is a partial mapped network — proximity ≠ real drainage availability.
-Observed reports are sector/landmark scale and mostly 2024–2025, outside the ERA5
-window — so cell-level and temporal validation are not yet possible.
-No suitable public point-level observed-waterlogging dataset was identified for this study —
+- OSM drainage is a **partial mapped network —** proximity ≠ real drainage availability.
+- Observed reports are **sector/landmark scale** and mostly **2024–2025**, outside the ERA5
+window — so cell-level and temporal validation are **not yet possible**.
+- **No suitable public point-level observed-waterlogging dataset was identified for this study —**
 the single biggest barrier to full validation, and itself a finding about Indian urban
 flood-data availability.
+
 ## 🤖 Where ML would (and would not) fit
-ML was deliberately not applied: supervised flood-classification needs cell-level labels
+ML was **deliberately not applied**: supervised flood-classification needs cell-level labels
 that don't exist. If a spatially-precise, timestamped observed-waterlogging dataset becomes
-available, the frozen V1–V6 layers could provide candidate predictor features and V7's
+available, the frozen V1–V6 layers could provide **candidate predictor features** and V7's
 provenance framework could inform a reproducible labelling/validation protocol — but that
 still needs feature engineering, spatial/temporal splits, leakage control, and imbalance
-handling. Until then, documenting the gap is the honest stopping point. Honesty over hype.
+handling. Until then, documenting the gap is the honest stopping point. **Honesty over hype**.
+
 ## 🧰 Tech stack
 Python · pysheds · rasterio · GeoPandas · Shapely · OSMnx · NumPy · Matplotlib · Folium ·
 pyproj · Copernicus GLO-30 · ERA5 (Open-Meteo) · OpenStreetMap · UTM 44N
+
 ## 📊 Data sources
-Elevation: Copernicus GLO-30 DEM via OpenTopography
-Rainfall: ERA5 reanalysis via Open-Meteo Historical API
-Urban features: OpenStreetMap via OSMnx / Overpass
-Observed reports: public news & official reports (provenance-tracked in V7-A)
-Built independently as an open, interpretable urban-hydrology baseline. Not affiliated with
+- **Elevation:** Copernicus GLO-30 DEM via OpenTopography</br>
+- **Rainfall:** ERA5 reanalysis via Open-Meteo Historical API</br>
+- **Urban features:** OpenStreetMap via OSMnx / Overpass</br>
+- O**bserved reports:** public news & official reports (provenance-tracked in V7-A)</br>
+*Built independently as an open, interpretable urban-hydrology baseline. Not affiliated with
 any authority. Every quantitative claim in the final synthesis is traceable to a committed
-artifact.
+artifact.*
